@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,15 +21,14 @@
             --bg-secondary-light: #f5f5f5;
             --text-color-dark: #ffffff;
             --text-color-light: #000000;
-            --accent-color: #ff0000;
-            --accent-color-hover: #cc0000;
+            --accent-color: #D97706; /* Updated to amber */
+            --accent-color-hover: #B45309; /* Updated to darker amber for hover */
         }
 
         /* Body Styles */
         body {
             background: var(--bg-primary-dark);
             color: var(--text-color-dark);
-            overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
         }
 
@@ -98,7 +58,11 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: var(--accent-color);
+            color: var(--text-color-dark);
+        }
+
+        body.light-mode .logo {
+            color: var(--text-color-light);
         }
 
         .logo img {
@@ -117,7 +81,11 @@
             text-decoration: none;
             margin: 0 1rem;
             font-size: 1.1rem;
-            color: var(--accent-color);
+            color: var(--text-color-dark);
+        }
+
+        body.light-mode .nav-links a {
+            color: var(--text-color-light);
         }
 
         .nav-links a:hover {
@@ -251,8 +219,12 @@
 
         .hero-content p {
             font-size: 1.5rem;
-            color: var(--accent-color);
+            color: var(--text-color-dark);
             margin-bottom: 2rem;
+        }
+
+        body.light-mode .hero-content p {
+            color: var(--text-color-light);
         }
 
         /* Audio Toggle */
@@ -299,8 +271,12 @@
 
         .section h2 {
             font-size: 2.5rem;
-            color: var(--accent-color);
+            color: var(--text-color-dark);
             margin-bottom: 2rem;
+        }
+
+        body.light-mode .section h2 {
+            color: var(--text-color-light);
         }
 
         /* About Section */
@@ -317,6 +293,15 @@
             margin: 0 auto 1rem;
             font-size: 1.2rem;
             line-height: 1.6;
+        }
+
+        .about a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .about a:hover {
+            color: var(--accent-color-hover);
         }
 
         /* Experience Section */
@@ -346,8 +331,12 @@
 
         .experience-card h3 {
             font-size: 1.8rem;
-            color: var(--accent-color);
+            color: var(--text-color-dark);
             margin-bottom: 1rem;
+        }
+
+        body.light-mode .experience-card h3 {
+            color: var(--text-color-light);
         }
 
         .experience-card p {
@@ -437,7 +426,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to bottom, rgba(255, 69, 0, 0), rgba(255, 69, 0, 0.3));
+            background: linear-gradient(to bottom, rgba(217, 119, 6, 0), rgba(217, 119, 6, 0.3)); /* Updated to amber */
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 1;
@@ -523,7 +512,7 @@
         }
 
         .footer-social a {
-            color: var(--accent-color);
+            color: var(--text-color-dark);
             font-size: 1.5rem;
             text-decoration: none;
             transition: color 0.3s;
@@ -532,13 +521,21 @@
             gap: 0.5rem;
         }
 
+        body.light-mode .footer-social a {
+            color: var(--text-color-light);
+        }
+
         .footer-social a:hover {
             color: var(--accent-color-hover);
         }
 
         .footer-social span {
             font-size: 1rem;
-            color: var(--accent-color);
+            color: var(--text-color-dark);
+        }
+
+        body.light-mode .footer-social span {
+            color: var(--text-color-light);
         }
 
         .footer-social a:hover span {
@@ -557,8 +554,12 @@
 
         .newsletter h3 {
             font-size: 1.2rem;
-            color: var(--accent-color);
+            color: var(--text-color-dark);
             margin-bottom: 1rem;
+        }
+
+        body.light-mode .newsletter h3 {
+            color: var(--text-color-light);
         }
 
         .newsletter form {
@@ -681,8 +682,8 @@
     <!-- About Section -->
     <section id="about" class="section about">
         <h2>Our Story</h2>
-        <p>Founded by Matias Sallaberry and Emily Davies, South Fire brings the heart of Argentinian asado to Victoria, BC. Our passion for open-fire cooking creates unforgettable communal experiences, blending rustic elegance with the primal energy of fire.</p>
-        <p>Rooted in tradition, our mission is to craft sensory events that celebrate food, fire, and connection.</p>
+        <p>SOUTH FIRE brings the unique flavors and traditions of South America to life through captivating hospitality events and authentic food products. We source our ingredients locally and sustainably, and use the artistic skill of cooking with fire and fermentation to create exceptional culinary experiences. Our goal is to provide our customers with an authentic and memorable taste of South America.</p>
+        <p>We are proud to be in partnership with <a href="https://www.zambris.ca" target="_blank" rel="noopener">Zambri's Restaurant</a>.</p>
     </section>
 
     <!-- Experience Section -->
