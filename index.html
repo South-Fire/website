@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>South Fire - Authentic Argentinian Asado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.css">
     <style>
         /* Reset and Base Styles */
         * {
@@ -17,12 +19,12 @@
         :root {
             --bg-primary-dark: #000000;
             --bg-secondary-dark: #1a1a1a;
-            --bg-primary-light: #ffffff;
-            --bg-secondary-light: #f5f5f5;
+            --bg-primary-light: #FFF8E7;
+            --bg-secondary-light: #F5F5DC;
             --text-color-dark: #ffffff;
-            --text-color-light: #000000;
-            --accent-color: #D97706; /* Updated to amber */
-            --accent-color-hover: #B45309; /* Updated to darker amber for hover */
+            --text-color-light: #4B2E2A;
+            --accent-color: #D97706;
+            --accent-color-hover: #B45309;
         }
 
         /* Body Styles */
@@ -35,6 +37,11 @@
         body.light-mode {
             background: var(--bg-primary-light);
             color: var(--text-color-light);
+        }
+
+        /* Headings */
+        h1, h2 {
+            font-family: 'Playfair+Display', serif;
         }
 
         /* Navigation */
@@ -145,7 +152,8 @@
 
         @media (max-width: 768px) {
             .mode-toggle {
-                margin-left: 2rem;
+                margin-left: 1rem;
+                margin-right: 0.7rem;
             }
         }
 
@@ -160,11 +168,12 @@
             font-size: 1rem;
             cursor: pointer;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: background 0.3s, box-shadow 0.3s;
         }
 
         .btn:hover {
             background: var(--accent-color-hover);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .btn-large {
@@ -193,6 +202,27 @@
             filter: brightness(0.6);
         }
 
+        .hero img.hero-mobile-image {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        @media (max-width: 768px) {
+            .hero video {
+                display: none;
+            }
+
+            .hero img.hero-mobile-image {
+                display: block;
+            }
+        }
+
         #particles-js {
             position: absolute;
             width: 100%;
@@ -211,20 +241,13 @@
             font-size: 3.5rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             margin-bottom: 1rem;
-        }
-
-        body.light-mode .hero-content h1 {
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            color: #ffffff; /* Always white */
         }
 
         .hero-content p {
             font-size: 1.5rem;
-            color: var(--text-color-dark);
+            color: #ffffff; /* Always white */
             margin-bottom: 2rem;
-        }
-
-        body.light-mode .hero-content p {
-            color: var(--text-color-light);
         }
 
         /* Audio Toggle */
@@ -253,6 +276,12 @@
 
         body.light-mode .audio-toggle:hover {
             background: rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .audio-toggle {
+                display: none;
+            }
         }
 
         /* Section Base Styles */
@@ -302,6 +331,22 @@
 
         .about a:hover {
             color: var(--accent-color-hover);
+        }
+
+        .email-links {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 2rem auto 0;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .email-links {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
         }
 
         /* Experience Section */
@@ -390,11 +435,12 @@
         .gallery-item img {
             width: 100%;
             display: block;
-            transition: transform 0.3s;
+            transition: transform 0.3s, filter 0.3s;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            filter: brightness(1.2);
         }
 
         .gallery-item .caption {
@@ -420,13 +466,13 @@
         }
 
         .gallery-item::before {
-            content: '';
+            /*content: '';*/
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to bottom, rgba(217, 119, 6, 0), rgba(217, 119, 6, 0.3)); /* Updated to amber */
+            background: linear-gradient(to bottom, rgba(217, 119, 6, 0), rgba(217, 119, 6, 0.3));
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 1;
@@ -462,6 +508,10 @@
             padding: 0 1rem;
         }
 
+        .contact p {
+            margin-bottom: 1rem;
+        }
+        
         .contact input, .contact textarea {
             padding: 1rem;
             border: none;
@@ -605,7 +655,8 @@
             }
 
             .btn-large {
-                width: 100%;
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
                 margin-bottom: 1rem;
             }
 
@@ -641,246 +692,275 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="./assets/img/logo.jpg" alt="South Fire Logo">
-            South Fire
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="./assets/img/logo.jpg" alt="South Fire Logo">
+        South Fire
+    </div>
+    <div class="nav-links">
+        <div class="nav-menu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
         </div>
-        <div class="nav-links">
-            <div class="nav-menu">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="mode-toggle" aria-label="Toggle light/dark mode">🌙</button>
-            <div class="hamburger">☰</div>
+        <button class="mode-toggle" aria-label="Toggle light/dark mode">🌙</button>
+        <div class="hamburger">☰</div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div id="particles-js"></div>
+    <video autoplay loop muted id="hero-video">
+        <source src="./assets/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <img src="./assets/img/cooking.jpg" alt="Hero Image for Mobile" class="hero-mobile-image">
+    <div class="hero-content">
+        <h1>Gather 'Round the Fire for Authentic Argentinian Asado</h1>
+        <p>Experience the warmth of fire-crafted events in Victoria, BC</p>
+        <a href="#contact" class="btn btn-large">Book Your Fire Experience</a>
+    </div>
+    <button class="audio-toggle" aria-label="Toggle video audio">🔇</button>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section about">
+    <h2>Our Story</h2>
+    <p>SOUTH FIRE brings the unique flavors and traditions of South America to life through captivating hospitality events and authentic food products. We source our ingredients locally and sustainably, and use the artistic skill of cooking with fire and fermentation to create exceptional culinary experiences. Our goal is to provide our customers with an authentic and memorable taste of South America. We are proud to be in partnership with <a href="https://www.zambris.ca" target="_blank" rel="noopener">Zambri's Restaurant</a> to make it all happen!</p>
+    <div class="email-links">
+        <a href="mailto:southfire.ca@gmail.com">southfire.ca@gmail.com</a>
+        <a href="mailto:info@zambris.ca">info@zambris.ca</a>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="section experience">
+    <h2>The Experience</h2>
+    <div class="experience-grid">
+        <div class="experience-card">
+            <h3>Private Dinners</h3>
+            <p>Picture this—a cozy evening under the stars, the crackle of the fire, and the mouthwatering smell of slow-cooked meats. We'll create a menu just for you, with dishes that tell a story and a setting that feels like home.</p>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div id="particles-js"></div>
-        <video autoplay muted loop>
-            <source src="./assets/video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-content">
-            <h1>Where Smoke Meets Soul: The True Argentinian Asado</h1>
-            <p>Experience fire-crafted events in Victoria, BC</p>
-            <a href="#contact" class="btn btn-large">Book Your Fire Experience</a>
+        <div class="experience-card">
+            <h3>Festivals</h3>
+            <p>Get ready for a feast for the senses! Our festivals are a celebration of fire, food, and community. Watch as our chefs work their magic over open flames, and join in the fun with music, dancing, and plenty of laughter.</p>
         </div>
-        <button class="audio-toggle" aria-label="Toggle fire crackling sound">🔥</button>
-        <audio id="fire-crackle" loop>
-            <source src="https://cdn.pixabay.com/audio/2022/08/10/audio_12345.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <h2>Our Story</h2>
-        <p>SOUTH FIRE brings the unique flavors and traditions of South America to life through captivating hospitality events and authentic food products. We source our ingredients locally and sustainably, and use the artistic skill of cooking with fire and fermentation to create exceptional culinary experiences. Our goal is to provide our customers with an authentic and memorable taste of South America.</p>
-        <p>We are proud to be in partnership with <a href="https://www.zambris.ca" target="_blank" rel="noopener">Zambri's Restaurant</a>.</p>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section experience">
-        <h2>The Experience</h2>
-        <div class="experience-grid">
-            <div class="experience-card">
-                <h3>Private Dinners</h3>
-                <p>Intimate gatherings with fire-grilled meats, curated menus, and a warm ambiance.</p>
-            </div>
-            <div class="experience-card">
-                <h3>Festivals</h3>
-                <p>Large-scale events showcasing the art of asado with live fire cooking.</p>
-            </div>
-            <div class="experience-card">
-                <h3>Collaborations</h3>
-                <p>Partnered events with local chefs and artisans for unique fire-driven experiences.</p>
-            </div>
+        <div class="experience-card">
+            <h3>Collaborations</h3>
+            <p>We love teaming up with local talents to create something special. Whether it's a pop-up dinner with a guest chef or a workshop on fire-cooking techniques, these events are all about sharing knowledge and passion.</p>
         </div>
-        <a href="#contact" class="btn btn-large" style="margin-top: 2rem;">Book an Experience</a>
-    </section>
+    </div>
+    <a href="#contact" class="btn btn-large" style="margin-top: 2rem;">Book an Experience</a>
+</section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="section gallery">
-        <h2>Gallery</h2>
-        <div class="gallery-container">
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="./assets/img/open-fire-cook.jpg" alt="Blazing fire pit at dusk">
-                    <div class="caption">Blazing fire pit at dusk, ready for the feast</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./assets/img/chicken-peppers.webp" alt="Sizzling ribeye on the grill">
-                    <div class="caption">Sizzling ribeye, kissed by the flames</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./assets/img/bbq-cart-outside.jpg" alt="Friends sharing stories by the fire">
-                    <div class="caption">Friends sharing stories by the fire’s glow</div>
-                </div>
-                <div class="gallery-item">
+<!-- Gallery Section -->
+<section id="gallery" class="section gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-container">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <a href="./assets/img/open-fire-cook.jpg">
+                    <img src="./assets/img/open-fire-cook.jpg" alt="The fire pit comes alive as the sun sets">
+                </a>
+                <div class="caption">The fire pit comes alive as the sun sets, casting a warm glow over the gathering</div>
+            </div>
+            <div class="gallery-item">
+                <a href="./assets/img/chicken-peppers.webp">
+                    <img src="./assets/img/chicken-peppers.webp" alt="Juicy ribeye sizzling on the grill">
+                </a>
+                <div class="caption">Juicy ribeye sizzling on the grill, infused with smoky flavor</div>
+            </div>
+            <div class="gallery-item">
+                <a href="./assets/img/bbq-cart-outside.jpg">
+                    <img src="./assets/img/bbq-cart-outside.jpg" alt="Friends gathered around the fire">
+                </a>
+                <div class="caption">Friends gathered around the fire, sharing stories and laughter</div>
+            </div>
+            <div class="gallery-item">
+                <a href="./assets/img/cooking.jpg">
                     <img src="./assets/img/cooking.jpg" alt="Rustic asado setup in the woods">
-                    <div class="caption">Rustic asado setup nestled in the woods</div>
-                </div>
-                <div class="gallery-item">
+                </a>
+                <div class="caption">Rustic asado setup nestled in the woods, where nature meets flavor</div>
+            </div>
+            <div class="gallery-item">
+                <a href="./assets/img/emily-matias-outside.jpg">
                     <img src="./assets/img/emily-matias-outside.jpg" alt="Golden embers lighting the night">
-                    <div class="caption">Golden embers lighting up the night sky</div>
-                </div>
-                <div class="gallery-item">
+                </a>
+                <div class="caption">Golden embers lighting up the night sky, creating a magical ambiance</div>
+            </div>
+            <div class="gallery-item">
+                <a href="./assets/img/firepit-outside.jpg">
                     <img src="./assets/img/firepit-outside.jpg" alt="Chef tending to the fire">
-                    <div class="caption">Chef tending to the fire with care</div>
-                </div>
+                </a>
+                <div class="caption">Our chef tending to the fire with care, ensuring every dish is perfect</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <h2>Book Now</h2>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="date" name="date" placeholder="Preferred Date" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit" class="btn btn-large">Submit</button>
+<!-- Contact Section -->
+<section id="contact" class="section contact">
+    <h2>Book Now</h2>
+    <p>We can't wait to hear from you! Whether you're planning a small dinner or a big bash, let's make it unforgettable together.</p>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="date" name="date" placeholder="Preferred Date" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn btn-large">Submit</button>
+    </form>
+    <div class="contact-links">
+        <a href="tel:+1234567890" class="btn">Call Us</a>
+        <a href="mailto:info@southfire.com" class="btn">Email Us</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="newsletter">
+        <h3>Stay Updated</h3>
+        <form action="https://your-mailchimp-form-url" method="POST">
+            <input type="email" name="EMAIL" placeholder="Your Email" required>
+            <button type="submit" class="btn">Subscribe</button>
         </form>
-        <div class="contact-links">
-            <a href="tel:+1234567890" class="btn">Call Us</a>
-            <a href="mailto:info@southfire.com" class="btn">Email Us</a>
-        </div>
-    </section>
+    </div>
+    <div class="footer-social">
+        <a href="https://instagram.com/emilyadavies_" aria-label="Emily's Instagram">
+            📷 <span>@emilyadavies_</span>
+        </a>
+        <a href="https://instagram.com/matiasallaberry" aria-label="Matias' Instagram">
+            📷 <span>@matiasallaberry</span>
+        </a>
+    </div>
+    <p>Thanks for stopping by! We hope to see you around the fire soon.</p>
+    <p>© 2025 South Fire. All rights reserved.</p>
+</footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="newsletter">
-            <h3>Stay Updated</h3>
-            <form action="https://your-mailchimp-form-url" method="POST">
-                <input type="email" name="EMAIL" placeholder="Your Email" required>
-                <button type="submit" class="btn">Subscribe</button>
-            </form>
-        </div>
-        <div class="footer-social">
-            <a href="https://instagram.com/emilyadavies_" aria-label="Emily's Instagram">
-                📷 <span>@emilyadavies_</span>
-            </a>
-            <a href="https://instagram.com/matiasallaberry" aria-label="Matias' Instagram">
-                📷 <span>@matiasallaberry</span>
-            </a>
-        </div>
-        <p>© 2025 South Fire. All rights reserved.</p>
-    </footer>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.js"></script>
+<script>
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+    // Smooth scrolling for nav links
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('active');
+            }
         });
+    });
 
-        // Smooth scrolling for nav links
-        document.querySelectorAll('.nav-links a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('active');
-                }
-            });
-        });
+    // Light/Dark Mode Toggle
+    const modeToggle = document.querySelector('.mode-toggle');
+    const body = document.body;
 
-        // Light/Dark Mode Toggle
-        const modeToggle = document.querySelector('.mode-toggle');
-        const body = document.body;
+    // Set light mode by default unless dark mode is explicitly set
+    if (localStorage.getItem('theme') !== 'dark') {
+        body.classList.add('light-mode');
+        modeToggle.textContent = '🌞';
+        localStorage.setItem('theme', 'light');
+    } else {
+        modeToggle.textContent = '🌙';
+    }
 
-        if (localStorage.getItem('theme') === 'light') {
-            body.classList.add('light-mode');
+    modeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        if (body.classList.contains('light-mode')) {
             modeToggle.textContent = '🌞';
+            localStorage.setItem('theme', 'light');
+        } else {
+            modeToggle.textContent = '🌙';
+            localStorage.setItem('theme', 'dark');
         }
+    });
 
-        modeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            if (body.classList.contains('light-mode')) {
-                modeToggle.textContent = '🌞';
-                localStorage.setItem('theme', 'light');
-            } else {
-                modeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'dark');
+    // Audio Toggle
+    const audioToggle = document.querySelector('.audio-toggle');
+    const heroVideo = document.getElementById('hero-video');
+    let isAudioOn = false;
+
+    audioToggle.addEventListener('click', () => {
+        if (isAudioOn) {
+            heroVideo.muted = true;
+            audioToggle.textContent = '🔇';
+            isAudioOn = false;
+        } else {
+            heroVideo.muted = false;
+            audioToggle.textContent = '🔊';
+            isAudioOn = true;
+        }
+    });
+
+    // Particles.js Configuration for Ember Effect
+    particlesJS({
+        particles: {
+            number: { value: 100, density: { enable: true, value_area: 800 } },
+            color: { value: ['#FF4500', '#FF8C00', '#FFA500', '#FFD700'] },
+            shape: { type: 'circle', stroke: { width: 0 } },
+            opacity: {
+                value: 0.7,
+                random: true,
+                anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
+            },
+            size: { value: 2, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
+            line_linked: { enable: false },
+            move: {
+                enable: true,
+                speed: 3,
+                direction: 'top',
+                random: false,
+                straight: false,
+                out_mode: 'out',
+                bounce: false,
+                attract: { enable: false }
+            }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: { enable: true, mode: 'repulse' },
+                onclick: { enable: true, mode: 'push' }
+            }
+        },
+        retina_detect: true
+    });
+
+    // Scroll-Triggered Animations
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
         });
+    }, { threshold: 0.1 });
 
-        // Audio Toggle
-        const audioToggle = document.querySelector('.audio-toggle');
-        const fireCrackle = document.getElementById('fire-crackle');
-        let isPlaying = false;
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 
-        audioToggle.addEventListener('click', () => {
-            if (isPlaying) {
-                fireCrackle.pause();
-                audioToggle.textContent = '🔥';
-                isPlaying = false;
-            } else {
-                fireCrackle.play();
-                audioToggle.textContent = '🔇';
-                isPlaying = true;
-            }
-        });
-
-        // Particles.js Configuration for Ember Effect
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 30, density: { enable: true, value_area: 800 } },
-                color: { value: ['#ff4500', '#ff8c00', '#ffa500'] },
-                shape: { type: 'circle', stroke: { width: 0 } },
-                opacity: {
-                    value: 0.7,
-                    random: true,
-                    anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
-                },
-                size: { value: 4, random: true, anim: { enable: true, speed: 2, size_min: 2, sync: false } },
-                line_linked: { enable: false },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'top',
-                    random: true,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false,
-                    attract: { enable: false }
-                }
+    // Initialize SimpleLightbox
+    document.addEventListener('DOMContentLoaded', function() {
+        new SimpleLightbox('.gallery-grid a', {
+            caption: function(element) {
+                return element.parentNode.querySelector('.caption').textContent;
             },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' }
-                }
-            },
-            retina_detect: true
+            captionPosition: 'bottom'
         });
-
-        // Scroll-Triggered Animations
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
