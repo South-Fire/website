@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>South Fire - Events Crafted with Fire</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="./assets/favicon/site.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Cinzel&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* CSS Variables */
+    :root {
+      --bg-primary-dark: #000000;
+      --bg-secondary-dark: #1a1a1a;
+      --bg-primary-light: #FFF8E7;
+      --bg-secondary-light: #F5F5DC;
+      --text-color-dark: #ffffff;
+      --text-color-light: #333;
+      --accent-red: #9B1515;
+      --accent-green: #7D8C59;
+    }
+
+    /* Body Styles */
+    body {
+      background: var(--bg-primary-dark);
+      color: var(--text-color-dark);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light-mode {
+      background: var(--bg-primary-light);
+      color: var(--text-color-light);
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5 {
+      font-family: 'Cinzel', serif;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    h3 {
+      font-size: 2.2rem;
+      margin: 1.5rem 0;
+      line-height: 1.3;
+      font-weight: 600;
+      color: var(--accent-red);
+    }
+
+    body.light-mode h3 {
+      color: var(--accent-red);
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(155, 21, 21, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    body.light-mode .navbar {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    body.light-mode .logo {
+      color: var(--text-color-light);
+    }
+
+    .logo img {
+      width: 30px;
+      height: 30px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    body.light-mode .nav-links a {
+      color: var(--text-color-light);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-green);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    body.light-mode .hamburger {
+      color: var(--text-color-light);
+    }
+
+    .nav-menu {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(155, 21, 21, 0.9);
+        flex-direction: column;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      body.light-mode .nav-menu {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        margin: 0.5rem 0;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Mode Toggle */
+    .mode-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .mode-toggle {
+        margin-left: 1rem;
+        margin-right: 0.7rem;
+      }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: var(--accent-red);
+      color: #ffffff;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--accent-green);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-large {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(155, 21, 21, 0.3);
+      z-index: 1;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    .hero img.hero-mobile-image {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    @media (max-width: 768px) {
+      .hero video {
+        display: none;
+      }
+
+      .hero img.hero-mobile-image {
+        display: block;
+      }
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 2rem;
+    }
+
+    /* Audio Toggle */
+    .audio-toggle {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #ffffff;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 3;
+    }
+
+    body.light-mode .audio-toggle {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .audio-toggle:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    body.light-mode .audio-toggle:hover {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .audio-toggle {
+        display: none;
+      }
+    }
+
+    /* Section Base Styles */
+    .section {
+      padding: 5rem 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      color: var(--accent-red);
+      margin-bottom: 2rem;
+    }
+
+    body.light-mode .section h2 {
+      color: var(--accent-red);
+    }
+
+    /* About Section */
+    .about {
+      background: url('./assets/img/parchment.jpg') center/cover;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: 0 auto 1rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .about a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .about a:hover {
+      color: var(--accent-green);
+    }
+
+    /* Experiences Section */
+    .experience {
+      background: url('./assets/img/fire-texture.png') center/cover;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .experience-card {
+      background: var(--bg-secondary-dark);
+      padding: 2rem;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    body.light-mode .experience-card {
+      background: var(--bg-secondary-light);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .experience-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .experience-card h3 {
+      font-size: 2.2rem;
+      color: var(--accent-red);
+      margin: 1.5rem 0;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    body.light-mode .experience-card h3 {
+      color: var(--accent-red);
+    }
+
+    .experience-card p {
+      font-size: 1rem;
+    }
+
+    .dining-experience, .events-crafted {
+      margin-bottom: 3rem;
+    }
+
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .format-card {
+      background: var(--bg-secondary-dark);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    body.light-mode .format-card {
+      background: var(--bg-secondary-light);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .format-card h5 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-red);
+    }
+
+    .format-card p {
+      font-size: 1rem;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .event-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      height: 150px;
+    }
+
+    .event-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .event-tile:hover img {
+      transform: scale(1.05);
+    }
+
+    .tile-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* Events Section */
+    .events {
+      background: var(--bg-secondary-dark);
+    }
+
+    body.light-mode .events {
+      background: var(--bg-secondary-light);
+    }
+
+    .event-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .event-link:hover .experience-card {
+      transform: translateY(-10px);
+    }
+
+    /* Gallery Section */
+    .gallery {
+      background: var(--bg-secondary-dark);
+    }
+
+    body.light-mode .gallery {
+      background: var(--bg-secondary-light);
+    }
+
+    .gallery-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 600px;
+      overflow-y: auto;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-auto-rows: 10px;
+      gap: 10px;
+    }
+
+    .gallery-item {
+      position: relative;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border-radius: 10px;
+      grid-row-end: span 20;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    body.light-mode .gallery-item .caption {
+      background: rgba(255, 255, 255, 0.7);
+      color: #000000;
+    }
+
+    .gallery-item:hover .caption {
+      transform: translateY(0);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: url('./assets/img/grill.jpg') center/cover;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .contact p {
+      margin-bottom: 1rem;
+    }
+
+    .contact input, .contact textarea {
+      padding: 1rem;
+      border: 1px solid var(--accent-green);
+      border-radius: 5px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.8);
+      color: var(--text-color-dark);
+      width: 100%;
+    }
+
+    body.light-mode .contact input, body.light-mode .contact textarea {
+      background: rgba(255,255,255,0.8);
+      color: var(--text-color-light);
+    }
+
+    .contact textarea {
+      resize: vertical;
+    }
+
+    .contact-links {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-secondary-dark);
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    body.light-mode .footer {
+      background: var(--bg-secondary-light);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-social a {
+      color: var(--accent-red);
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    body.light-mode .footer-social a {
+      color: var(--accent-red);
+    }
+
+    .footer-social a:hover {
+      color: var(--accent-green);
+    }
+
+    .newsletter form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .newsletter input[type="email"] {
+      padding: 0.8rem;
+      border: 1px solid var(--accent-green);
+      border-radius: 5px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.8);
+      color: var(--text-color-dark);
+      flex: 1;
+      min-width: 200px;
+    }
+
+    body.light-mode .newsletter input[type="email"] {
+      background: rgba(255,255,255,0.8);
+      color: var(--text-color-light);
+    }
+
+    /* Popup Styles */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .popup-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .popup-content {
+      background: var(--bg-secondary-dark);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+      transform: scale(0.8);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    body.light-mode .popup-content {
+      background: var(--bg-secondary-light);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-overlay.active .popup-content {
+      transform: scale(1);
+    }
+
+    .popup-content h3 {
+      color: var(--accent-red);
+    }
+
+    .popup-content form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .popup-content input[type="email"] {
+      padding: 0.8rem;
+      border: 1px solid var(--accent-green);
+      border-radius: 5px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.8);
+      color: var(--text-color-dark);
+      flex: 1;
+      min-width: 200px;
+    }
+
+    body.light-mode .popup-content input[type="email"] {
+      background: rgba(255,255,255,0.8);
+      color: var(--text-color-light);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-color-dark);
+      cursor: pointer;
+    }
+
+    body.light-mode .popup-close {
+      color: var(--text-color-light);
+    }
+
+    .popup-close:hover {
+      color: var(--accent-green);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+
+      .experience-grid, .formats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-container {
+        height: 400px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-content p {
+        font-size: 0.9rem;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+      }
+
+      .footer-social {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="./assets/img/logo.jpg" alt="South Fire Logo">
+    South Fire
+  </div>
+  <div class="nav-links">
+    <div class="nav-menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#events">Events</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="mode-toggle" aria-label="Toggle light/dark mode">🌙</button>
+    <div class="hamburger">☰</div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div id="particles-js"></div>
+  <video autoplay loop muted id="hero-video">
+    <source src="./assets/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <img src="./assets/img/cooking.jpg" alt="Hero Image for Mobile" class="hero-mobile-image">
+  <div class="hero-content">
+    <h1>Events Crafted with Fire</h1>
+    <p>Rooted in tradition. Cooked in the fire. Shared with soul.</p>
+    <a href="#contact" class="btn btn-large">Book Your Experience</a>
+  </div>
+  <button class="audio-toggle" aria-label="Toggle video audio">🔇</button>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section about">
+  <h2>Our Story</h2>
+  <p>At South Fire, we specialize in live-fire cooking — bringing bold flavours and a deep, meaningful experience to the table. For us, cooking is more than just preparing food. It’s about sharing who we are. Every dish carries a story, a memory, a part of our journey.</p>
+  <p>Some of these stories come from the places we’ve been, the people we've cooked for, and the fires we’ve sat beside. Others might remind you of your own — your family, your roots, your connection to food. Because food isn’t just something we eat. It’s a cultural event. A language. And we love sharing it with you.</p>
+  <h2>About Emily and Matias</h2>
+  <p>Emily Davies brings a fiery passion to South Fire, drawing from her roots in Southern barbecue traditions. Growing up in a family that cherished slow-cooked meals and backyard gatherings, she honed her craft through years of experimenting with open flames, blending bold spices with time-honored techniques to create dishes that feel like home.</p>
+  <p>Matias Sallaberry, with his Argentine heritage, infuses South Fire with the soul of asado. His love for fire-cooking was sparked as a kid, watching his abuelo grill over glowing embers. Matias crafts each dish with precision and heart, turning every event into a celebration of flavor and connection.</p>
+</section>
+
+<!-- Experiences Section -->
+<section id="experiences" class="section experience">
+  <h2>Experiences</h2>
+  <div class="dining-experience">
+    <h3>Dining Experience</h3>
+    <p>Our approach to cooking is rooted in tradition, blending traditional South American fire-cooking techniques with the best organic and local produce from our partnered farms or our garden. Each menu is crafted to reflect the season, the occasion, and the people around the fire.</p>
+    <p><strong>Dining Formats (3 types):</strong></p>
+    <div class="formats-grid">
+      <div class="format-card">
+        <h5>Seated Multi-Course Meal</h5>
+        <p>A refined tasting menu showcasing the depth and elegance of fire-cooked cuisine.</p>
+      </div>
+      <div class="format-card">
+        <h5>Family-Style Feast</h5>
+        <p>A convivial dining experience with generous platters for sharing, emphasizing warmth and connection.</p>
+      </div>
+      <div class="format-card">
+        <h5>Live Fire Experience</h5>
+        <p>An intimate, hands-on culinary journey for small groups looking to connect with the process, featuring guided fire-cooking techniques and a meal prepared entirely over open flames.</p>
+      </div>
+    </div>
+    <a href="#contact" class="btn btn-large" style="margin-top: 2rem;">Book an Experience</a>
+  </div>
+  <div class="events-crafted">
+    <h3>Events Crafted with Fire</h3>
+    <div class="events-grid">
+      <a href="#contact" class="event-tile">
+        <img src="./assets/img/open-fire-cook.jpg" alt="Weddings & Rehearsal Dinners">
+        <div class="tile-title">Weddings & Rehearsal Dinners</div>
+      </a>
+      <a href="#contact" class="event-tile">
+        <img src="./assets/img/chicken-peppers.webp" alt="Private Celebrations & Anniversaries">
+        <div class="tile-title">Private Celebrations & Anniversaries</div>
+      </a>
+      <a href="#contact" class="event-tile">
+        <img src="./assets/img/bbq-cart-outside.jpg" alt="Corporate Gatherings">
+        <div class="tile-title">Corporate Gatherings</div>
+      </a>
+      <a href="#contact" class="event-tile">
+        <img src="./assets/img/cooking.jpg" alt="Exclusive Dinners">
+        <div class="tile-title">Exclusive Dinners</div>
+      </a>
+      <a href="#contact" class="event-tile">
+        <img src="./assets/img/emily-matias-outside.jpg" alt="Custom Culinary Experiences">
+        <div class="tile-title">Custom Culinary Experiences</div>
+      </a>
+    </div>
+  </div>
+  <button class="btn view-menu">View Sample Menu</button>
+</section>
+
+<!-- Events Section -->
+<section id="events" class="section events">
+  <h2>Upcoming Events</h2>
+  <div class="experience-grid">
+    <a href="https://www.southfire.ca" target="_blank" rel="noopener" class="event-link">
+      <div class="experience-card">
+        <h3>Summer BBQ Festival</h3>
+        <p>Join us for a day of fun, food, and fire at our annual Summer BBQ Festival. Enjoy live music, cooking demonstrations, and plenty of delicious grilled treats.</p>
+      </div>
+    </a>
+    <a href="https://www.southfire.ca" target="_blank" rel="noopener" class="event-link">
+      <div class="experience-card">
+        <h3>Winter Fire Cooking Workshop</h3>
+        <p>Learn the art of cooking with fire in our hands-on workshop. Perfect for food enthusiasts looking to master new techniques and enjoy a warm meal by the fire.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="section gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-container">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <a href="./assets/img/open-fire-cook.jpg">
+          <img src="./assets/img/open-fire-cook.jpg" alt="The fire pit comes alive as the sun sets">
+        </a>
+        <div class="caption">The fire pit comes alive as the sun sets, casting a warm glow over the gathering</div>
+      </div>
+      <div class="gallery-item">
+        <a href="./assets/img/chicken-peppers.webp">
+          <img src="./assets/img/chicken-peppers.webp" alt="Juicy ribeye sizzling on the grill">
+        </a>
+        <div class="caption">Juicy ribeye sizzling on the grill, infused with smoky flavor</div>
+      </div>
+      <div class="gallery-item">
+        <a href="./assets/img/bbq-cart-outside.jpg">
+          <img src="./assets/img/bbq-cart-outside.jpg" alt="Friends gathered around the fire">
+        </a>
+        <div class="caption">Friends gathered around the fire, sharing stories and laughter</div>
+      </div>
+      <div class="gallery-item">
+        <a href="./assets/img/cooking.jpg">
+          <img src="./assets/img/cooking.jpg" alt="Rustic asado setup in the woods">
+        </a>
+        <div class="caption">Rustic asado setup nestled in the woods, where nature meets flavor</div>
+      </div>
+      <div class="gallery-item">
+        <a href="./assets/img/emily-matias-outside.jpg">
+          <img src="./assets/img/emily-matias-outside.jpg" alt="Golden embers lighting the night">
+        </a>
+        <div class="caption">Golden embers lighting up the night sky, creating a magical ambiance</div>
+      </div>
+      <div class="gallery-item">
+        <a href="./assets/img/firepit-outside.jpg">
+          <img src="./assets/img/firepit-outside.jpg" alt="Chef tending to the fire">
+        </a>
+        <div class="caption">Our chef tending to the fire with care, ensuring every dish is perfect</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section contact">
+  <h2>Book Now</h2>
+  <p>We can't wait to hear from you! Whether you're planning a small dinner or a big bash, let's make it unforgettable together.</p>
+  <form action="https://formspree.io/f/your-form-id" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="date" name="date" placeholder="Preferred Date" required>
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit" class="btn btn-large">Submit</button>
+  </form>
+  <div class="contact-links">
+    <a href="tel:+1234567890" class="btn">Call Us</a>
+    <a href="mailto:info@southfire.ca" class="btn">Email Us</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="newsletter">
+    <h3>Stay Updated</h3>
+    <form action="https://your-mailchimp-form-url" method="POST">
+      <input type="email" name="EMAIL" placeholder="Your Email" required>
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+  </div>
+  <div class="footer-social">
+    <a href="https://instagram.com/emilyadavies_" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://facebook.com/southfire" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/southfire" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+  </div>
+  <p>Thanks for stopping by! We hope to see you around the fire soon.</p>
+  <p>© 2025 South Fire. All rights reserved.</p>
+</footer>
+
+<!-- Subscriber Popup -->
+<div class="popup-overlay" id="newsletter-popup">
+  <div class="popup-content">
+    <button class="popup-close" aria-label="Close popup">✕</button>
+    <h3>Join Our Newsletter</h3>
+    <p>Stay in the loop with exclusive updates, event invites, and fiery recipes!</p>
+    <form action="https://your-mailchimp-form-url" method="POST">
+      <input type="email" name="EMAIL" placeholder="Your Email" required>
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- Menu Popup -->
+<div class="popup-overlay" id="menu-popup">
+  <div class="popup-content">
+    <button class="popup-close" aria-label="Close popup">✕</button>
+    <h3>Sample Menu</h3>
+    <div class="menu">
+      <h4>Welcome Cocktail</h4>
+      <p>Oyster Flambadou</p>
+      <h4>Welcome Bites</h4>
+      <p>Spot Prawns • Sooke Winged Kelp</p>
+      <p>Anticucho • Chicken Hearts, Peanuts & Aji Amarillo</p>
+      <p>Choripan • Pork Sausage & Chimichurri</p>
+      <p>Beef Empanada • Llajua</p>
+      <h4>Stationary</h4>
+      <p>Cold Cuts & Cheese</p>
+      <p>House-made Preserves & Ferment</p>
+      <p>Sourdough Bread & Focaccia</p>
+      <h4>Vegetables</h4>
+      <p>Seasonal organic vegetables cooked over the fire</p>
+      <p>Grilled Baby Romaine • Parmigiano • Blackberry Balsamic Vinegar • Lockwood Farm Eggs</p>
+      <p>Tetsukabuto Winter Squash • Chickpea Miso</p>
+      <p>BC Kennebec Potatoes • Herbs • Pimentón de Cachi</p>
+      <p>Dandelion Greens • Salsa Verde</p>
+      <h4>Main</h4>
+      <p>Whole Roasted Lingcod • Maple blossom butter</p>
+      <p>BC Fed Gras “Vacío” • Bavette Steak • Salsa Criolla</p>
+      <p>Island-Raised Organic Chicken • Achiote BBQ Sauce</p>
+      <h4>Dessert</h4>
+      <p>Panqueques con dulce de leche</p>
+      <p>Crepe Brûlée with our organic BC Milk Dulce de Leche</p>
+    </div>
+    <p>Let us make your own menu…</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+  // Hamburger Menu Toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // Smooth scrolling for nav links
+  document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+      if (window.innerWidth <= 768) {
+        navMenu.classList.remove('active');
+      }
+    });
+  });
+
+  // Light/Dark Mode Toggle
+  const modeToggle = document.querySelector('.mode-toggle');
+  const body = document.body;
+
+  if (localStorage.getItem('theme') !== 'dark') {
+    body.classList.add('light-mode');
+    modeToggle.textContent = '🌞';
+    localStorage.setItem('theme', 'light');
+  } else {
+    modeToggle.textContent = '🌙';
+  }
+
+  modeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    if (body.classList.contains('light-mode')) {
+      modeToggle.textContent = '🌞';
+      localStorage.setItem('theme', 'light');
+    } else {
+      modeToggle.textContent = '🌙';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
+  // Audio Toggle
+  const audioToggle = document.querySelector('.audio-toggle');
+  const heroVideo = document.getElementById('hero-video');
+  let isAudioOn = false;
+
+  audioToggle.addEventListener('click', () => {
+    if (isAudioOn) {
+      heroVideo.muted = true;
+      audioToggle.textContent = '🔇';
+      isAudioOn = false;
+    } else {
+      heroVideo.muted = false;
+      audioToggle.textContent = '🔊';
+      isAudioOn = true;
+    }
+  });
+
+  // Particles.js Configuration
+  particlesJS({
+    particles: {
+      number: { value: 100, density: { enable: true, value_area: 800 } },
+      color: { value: ['#9B1515', '#7D8C59', '#FFA500', '#FFD700'] },
+      shape: { type: 'circle', stroke: { width: 0 } },
+      opacity: {
+        value: 0.7,
+        random: true,
+        anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
+      },
+      size: { value: 2, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
+      line_linked: { enable: false },
+      move: {
+        enable: true,
+        speed: 3,
+        direction: 'top',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false,
+        attract: { enable: false }
+      }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' }
+      }
+    },
+    retina_detect: true
+  });
+
+  // Scroll-Triggered Animations
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  // Initialize SimpleLightbox and Masonry
+  document.addEventListener('DOMContentLoaded', function() {
+    new SimpleLightbox('.gallery-grid a', {
+      caption: function(element) {
+        return element.parentNode.querySelector('.caption').textContent;
+      },
+      captionPosition: 'bottom'
+    });
+
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const masonry = new Masonry(galleryGrid, {
+      itemSelector: '.gallery-item',
+      columnWidth: 200,
+      gutter: 10
+    });
+
+    // Newsletter Popup
+    const popupOverlay = document.getElementById('newsletter-popup');
+    const popupClose = popupOverlay.querySelector('.popup-close');
+
+    if (!sessionStorage.getItem('popupDismissed')) {
+      setTimeout(() => {
+        popupOverlay.classList.add('active');
+      }, 5000);
+    }
+
+    popupClose.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+      sessionStorage.setItem('popupDismissed', 'true');
+    });
+
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+        sessionStorage.setItem('popupDismissed', 'true');
+      }
+    });
+
+    // Menu Popup
+    const viewMenuBtn = document.querySelector('.view-menu');
+    const menuPopup = document.getElementById('menu-popup');
+    const menuPopupClose = menuPopup.querySelector('.popup-close');
+
+    viewMenuBtn.addEventListener('click', () => {
+      menuPopup.classList.add('active');
+    });
+
+    menuPopupClose.addEventListener('click', () => {
+      menuPopup.classList.remove('active');
+    });
+
+    menuPopup.addEventListener('click', (e) => {
+      if (e.target === menuPopup) {
+        menuPopup.classList.remove('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>
