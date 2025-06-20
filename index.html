@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Fire - Authentic Argentinian Asado</title>
+    <title>South Fire - Events Crafted with Fire</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./assets/favicon/site.webmanifest">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.css">
     <style>
@@ -40,8 +44,19 @@
         }
 
         /* Headings */
-        h1, h2 {
+        h1, h2, h3 {
             font-family: 'Playfair+Display', serif;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            margin: 1.5rem 0;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        body.light-mode h3 {
+            color: var(--text-color-light);
         }
 
         /* Navigation */
@@ -241,12 +256,12 @@
             font-size: 3.5rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             margin-bottom: 1rem;
-            color: #ffffff; /* Always white */
+            color: #ffffff;
         }
 
         .hero-content p {
             font-size: 1.5rem;
-            color: #ffffff; /* Always white */
+            color: #ffffff;
             margin-bottom: 2rem;
         }
 
@@ -308,12 +323,12 @@
             color: var(--text-color-light);
         }
 
-        /* About Section */
-        .about, .gallery {
+        /* About, Gallery, and Events Sections */
+        .about, .gallery, .events {
             background: var(--bg-secondary-dark);
         }
 
-        body.light-mode .about, body.light-mode .gallery {
+        body.light-mode .about, body.light-mode .gallery, body.light-mode .events {
             background: var(--bg-secondary-light);
         }
 
@@ -331,22 +346,6 @@
 
         .about a:hover {
             color: var(--accent-color-hover);
-        }
-
-        .email-links {
-            display: flex;
-            justify-content: space-between;
-            max-width: 800px;
-            margin: 2rem auto 0;
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 768px) {
-            .email-links {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
         }
 
         /* Experience Section */
@@ -367,7 +366,7 @@
 
         body.light-mode .experience-card {
             background: var(--bg-secondary-light);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .experience-card:hover {
@@ -375,9 +374,11 @@
         }
 
         .experience-card h3 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: var(--text-color-dark);
-            margin-bottom: 1rem;
+            margin:1.5rem 0;
+            line-height: 1.3;
+            font-weight: 600;
         }
 
         body.light-mode .experience-card h3 {
@@ -386,6 +387,82 @@
 
         .experience-card p {
             font-size: 1rem;
+        }
+
+        /* New Styles for Updated Experiences Section */
+        .dining-experience, .events-crafted {
+            margin-bottom: 3rem;
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .format-card {
+            background: var(--bg-secondary-dark);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        body.light-mode .format-card {
+            background: var(--bg-secondary-light);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .format-card h5 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .format-card p {
+            font-size: 1rem;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .event-tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 150px;
+        }
+
+        .event-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tile-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Make event cards clickable */
+        .event-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .event-link:hover .experience-card {
+            transform: translateY(-10px);
         }
 
         /* Gallery Section */
@@ -466,7 +543,6 @@
         }
 
         .gallery-item::before {
-            /*content: '';*/
             position: absolute;
             top: 0;
             left: 0;
@@ -511,7 +587,7 @@
         .contact p {
             margin-bottom: 1rem;
         }
-        
+
         .contact input, .contact textarea {
             padding: 1rem;
             border: none;
@@ -603,9 +679,11 @@
         }
 
         .newsletter h3 {
-            font-size: 1.2rem;
+            font-size: 2.2rem;
             color: var(--text-color-dark);
-            margin-bottom: 1rem;
+            margin: 1.5rem 0;
+            line-height: 1.3;
+            font-weight: 600;
         }
 
         body.light-mode .newsletter h3 {
@@ -636,6 +714,125 @@
             border: 1px solid #ccc;
         }
 
+        /* Popup Styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .popup-content {
+            background: var(--bg-secondary-dark);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        body.light-mode .popup-content {
+            background: var(--bg-secondary-light);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+
+        .popup-content h3 {
+            font-size: 2.2rem;
+            color: var(--text-color-dark);
+            margin: 1.5rem 0;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .popup-content form {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .popup-content input[type="email"] {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: #2c2c2c;
+            color: #ffffff;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        body.light-mode .popup-content input[type="email"] {
+            background: #e0e0e0;
+            color: #000000;
+            border: 1px solid #ccc;
+        }
+
+        body.light-mode .popup-content h3 {
+            color: var(--text-color-light);
+        }
+
+        .popup-content p {
+            font-size: 1rem;
+            color: var(--text-color-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        body.light-mode .popup-content p {
+            color: var(--text-color-light);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color-dark);
+            cursor: pointer;
+        }
+
+        body.light-mode .popup-close {
+            color: var(--text-color-light);
+        }
+
+        .popup-close:hover {
+            color: var(--accent-color-hover);
+        }
+
+        /* Styles for Menu Popup */
+        .menu h4 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu p {
+            font-size: 1rem;
+            margin: 0.3rem 0;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -664,6 +861,11 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
+
+            h3 {
+                font-size: 1.8rem;
+                margin: 1.2rem 0;
+            }
         }
 
         @media (max-width: 480px) {
@@ -688,6 +890,16 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
+
+            .popup-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.6rem;
+                margin: 1rem 0;
+            }
         }
     </style>
 </head>
@@ -702,7 +914,8 @@
         <div class="nav-menu">
             <a href="#home">Home</a>
             <a href="#about">About</a>
-            <a href="#experience">Experience</a>
+            <a href="#experiences">Experiences</a>
+            <a href="#events">Events</a>
             <a href="#gallery">Gallery</a>
             <a href="#contact">Contact</a>
         </div>
@@ -720,9 +933,9 @@
     </video>
     <img src="./assets/img/cooking.jpg" alt="Hero Image for Mobile" class="hero-mobile-image">
     <div class="hero-content">
-        <h1>Gather 'Round the Fire for Authentic Argentinian Asado</h1>
-        <p>Experience the warmth of fire-crafted events in Victoria, BC</p>
-        <a href="#contact" class="btn btn-large">Book Your Fire Experience</a>
+        <h1>Events Crafted with Fire</h1>
+        <p>Rooted in tradition. Cooked in the fire. Shared with soul.</p>
+        <a href="#contact" class="btn btn-large">Book Your Experience</a>
     </div>
     <button class="audio-toggle" aria-label="Toggle video audio">🔇</button>
 </section>
@@ -730,31 +943,82 @@
 <!-- About Section -->
 <section id="about" class="section about">
     <h2>Our Story</h2>
-    <p>SOUTH FIRE brings the unique flavors and traditions of South America to life through captivating hospitality events and authentic food products. We source our ingredients locally and sustainably, and use the artistic skill of cooking with fire and fermentation to create exceptional culinary experiences. Our goal is to provide our customers with an authentic and memorable taste of South America. We are proud to be in partnership with <a href="https://www.zambris.ca" target="_blank" rel="noopener">Zambri's Restaurant</a> to make it all happen!</p>
-    <div class="email-links">
-        <a href="mailto:southfire.ca@gmail.com">southfire.ca@gmail.com</a>
-        <a href="mailto:info@zambris.ca">info@zambris.ca</a>
-    </div>
+    <p>At South Fire, we specialize in live-fire cooking — bringing bold flavours and a deep, meaningful experience to the table. For us, cooking is more than just preparing food. It’s about sharing who we are. Every dish carries a story, a memory, a part of our journey.</p>
+    <p>Some of these stories come from the places we’ve been, the people we've cooked for, and the fires we’ve sat beside. Others might remind you of your own — your family, your roots, your connection to food. Because food isn’t just something we eat. It’s a cultural event. A language. And we love sharing it with you.</p>
+    <h2>About Emily and Matias</h2>
+    <p>Emily Davies brings a fiery passion to South Fire, drawing from her roots in Southern barbecue traditions. Growing up in a family that cherished slow-cooked meals and backyard gatherings, she honed her craft through years of experimenting with open flames, blending bold spices with time-honored techniques to create dishes that feel like home.</p>
+    <p>Matias Sallaberry, with his Argentine heritage, infuses South Fire with the soul of asado. His love for fire-cooking was sparked as a kid, watching his abuelo grill over glowing embers. Matias crafts each dish with precision and heart, turning every event into a celebration of flavor and connection.</p>
 </section>
 
-<!-- Experience Section -->
-<section id="experience" class="section experience">
-    <h2>The Experience</h2>
-    <div class="experience-grid">
-        <div class="experience-card">
-            <h3>Private Dinners</h3>
-            <p>Picture this—a cozy evening under the stars, the crackle of the fire, and the mouthwatering smell of slow-cooked meats. We'll create a menu just for you, with dishes that tell a story and a setting that feels like home.</p>
+<!-- Updated Experiences Section -->
+<section id="experiences" class="section experience">
+    <h2>Experiences</h2>
+    <div class="dining-experience">
+        <h3>Dining Experience</h3>
+        <p>Our approach to cooking is rooted in tradition, blending traditional South American fire-cooking techniques with the best organic and local produce from our partnered farms or our garden. Each menu is crafted to reflect the season, the occasion, and the people around the fire.</p>
+        <p><strong>Dining Formats (3 types):</strong></p>
+        <div class="formats-grid">
+            <div class="format-card">
+                <h5>Seated Multi-Course Meal</h5>
+                <p>A refined tasting menu showcasing the depth and elegance of fire-cooked cuisine.</p>
+            </div>
+            <div class="format-card">
+                <h5>Family-Style Feast</h5>
+                <p>A convivial dining experience with generous platters for sharing, emphasizing warmth and connection.</p>
+            </div>
+            <div class="format-card">
+                <h5>Live Fire Experience</h5>
+                <p>An intimate, hands-on culinary journey for small groups looking to connect with the process, featuring guided fire-cooking techniques and a meal prepared entirely over open flames.</p>
+            </div>
         </div>
-        <div class="experience-card">
-            <h3>Festivals</h3>
-            <p>Get ready for a feast for the senses! Our festivals are a celebration of fire, food, and community. Watch as our chefs work their magic over open flames, and join in the fun with music, dancing, and plenty of laughter.</p>
-        </div>
-        <div class="experience-card">
-            <h3>Collaborations</h3>
-            <p>We love teaming up with local talents to create something special. Whether it's a pop-up dinner with a guest chef or a workshop on fire-cooking techniques, these events are all about sharing knowledge and passion.</p>
+        <a href="#contact" class="btn btn-large" style="margin-top: 2rem;">Book an Experience</a>
+    </div>
+    <div class="events-crafted">
+        <h3>Events Crafted with Fire</h3>
+        <div class="events-grid">
+            <a href="#contact" class="event-tile">
+                <img src="./assets/img/open-fire-cook.jpg" alt="Weddings & Rehearsal Dinners">
+                <div class="tile-title">Weddings & Rehearsal Dinners</div>
+            </a>
+            <a href="#contact" class="event-tile">
+                <img src="./assets/img/chicken-peppers.webp" alt="Private Celebrations & Anniversaries">
+                <div class="tile-title">Private Celebrations & Anniversaries</div>
+            </a>
+            <a href="#contact" class="event-tile">
+                <img src="./assets/img/bbq-cart-outside.jpg" alt="Corporate Gatherings">
+                <div class="tile-title">Corporate Gatherings</div>
+            </a>
+            <a href="#contact" class="event-tile">
+                <img src="./assets/img/cooking.jpg" alt="Exclusive Dinners">
+                <div class="tile-title">Exclusive Dinners</div>
+            </a>
+            <a href="#contact" class="event-tile">
+                <img src="./assets/img/emily-matias-outside.jpg" alt="Custom Culinary Experiences">
+                <div class="tile-title">Custom Culinary Experiences</div>
+            </a>
         </div>
     </div>
-    <a href="#contact" class="btn btn-large" style="margin-top: 2rem;">Book an Experience</a>
+    <button class="btn view-menu">View Sample Menu</button>
+
+</section>
+
+<!-- Events Section -->
+<section id="events" class="section events">
+    <h2>Upcoming Events</h2>
+    <div class="experience-grid">
+        <a href="https://www.southfire.com/events/summer-bbq-festival" target="_blank" rel="noopener" class="event-link">
+            <div class="experience-card">
+                <h3>Summer BBQ Festival</h3>
+                <p>Join us for a day of fun, food, and fire at our annual Summer BBQ Festival. Enjoy live music, cooking demonstrations, and plenty of delicious grilled treats.</p>
+            </div>
+        </a>
+        <a href="https://www.southfire.com/events/winter-fire-cooking-workshop" target="_blank" rel="noopener" class="event-link">
+            <div class="experience-card">
+                <h3>Winter Fire Cooking Workshop</h3>
+                <p>Learn the art of cooking with fire in our hands-on workshop. Perfect for food enthusiasts looking to master new techniques and enjoy a warm meal by the fire.</p>
+            </div>
+        </a>
+    </div>
 </section>
 
 <!-- Gallery Section -->
@@ -839,6 +1103,54 @@
     <p>Thanks for stopping by! We hope to see you around the fire soon.</p>
     <p>© 2025 South Fire. All rights reserved.</p>
 </footer>
+
+<!-- Subscriber Popup -->
+<div class="popup-overlay" id="newsletter-popup">
+    <div class="popup-content">
+        <button class="popup-close" aria-label="Close popup">✕</button>
+        <h3>Join Our Newsletter</h3>
+        <p>Stay in the loop with exclusive updates, event invites, and fiery recipes!</p>
+        <form action="https://your-mailchimp-form-url" method="POST">
+            <input type="email" name="EMAIL" placeholder="Your Email" required>
+            <button type="submit" class="btn">Subscribe</button>
+        </form>
+    </div>
+</div>
+
+<!-- Menu Popup -->
+<div class="popup-overlay" id="menu-popup">
+    <div class="popup-content">
+        <button class="popup-close" aria-label="Close popup">✕</button>
+        <h3>Sample Menu</h3>
+        <div class="menu">
+            <h4>Welcome Cocktail</h4>
+            <p>Oyster Flambadou</p>
+            <h4>Welcome Bites</h4>
+            <p>Spot Prawns • Sooke Winged Kelp</p>
+            <p>Anticucho • Chicken Hearts, Peanuts & Aji Amarillo</p>
+            <p>Choripan • Pork Sausage & Chimichurri</p>
+            <p>Beef Empanada • Llajua</p>
+            <h4>Stationary</h4>
+            <p>Cold Cuts & Cheese</p>
+            <p>House-made Preserves & Ferment</p>
+            <p>Sourdough Bread & Focaccia</p>
+            <h4>Vegetables</h4>
+            <p>Seasonal organic vegetables cooked over the fire</p>
+            <p>Grilled Baby Romaine • Parmigiano • Blackberry Balsamic Vinegar • Lockwood Farm Eggs</p>
+            <p>Tetsukabuto Winter Squash • Chickpea Miso</p>
+            <p>BC Kennebec Potatoes • Herbs • Pimentón de Cachi</p>
+            <p>Dandelion Greens • Salsa Verde</p>
+            <h4>Main</h4>
+            <p>Whole Roasted Lingcod • Maple blossom butter</p>
+            <p>BC Fed Gras “Vacío” • Bavette Steak • Salsa Criolla</p>
+            <p>Island-Raised Organic Chicken • Achiote BBQ Sauce</p>
+            <h4>Dessert</h4>
+            <p>Panqueques con dulce de leche</p>
+            <p>Crepe Brûlée with our organic BC Milk Dulce de Leche</p>
+        </div>
+        <p>Let us make your own menu…</p>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.js"></script>
@@ -959,6 +1271,50 @@
                 return element.parentNode.querySelector('.caption').textContent;
             },
             captionPosition: 'bottom'
+        });
+
+        // Newsletter Popup
+        const popupOverlay = document.getElementById('newsletter-popup');
+        const popupClose = document.querySelector('.popup-close');
+
+        // Show popup after 5 seconds if not previously dismissed
+        if (!sessionStorage.getItem('popupDismissed')) {
+            setTimeout(() => {
+                popupOverlay.classList.add('active');
+            }, 5000);
+        }
+
+        // Close popup on button click
+        popupClose.addEventListener('click', () => {
+            popupOverlay.classList.remove('active');
+            sessionStorage.setItem('popupDismissed', 'true');
+        });
+
+        // Close popup when clicking outside content
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.classList.remove('active');
+                sessionStorage.setItem('popupDismissed', 'true');
+            }
+        });
+
+        // Menu Popup
+        const viewMenuBtn = document.querySelector('.view-menu');
+        const menuPopup = document.getElementById('menu-popup');
+        const menuPopupClose = menuPopup.querySelector('.popup-close');
+
+        viewMenuBtn.addEventListener('click', () => {
+            menuPopup.classList.add('active');
+        });
+
+        menuPopupClose.addEventListener('click', () => {
+            menuPopup.classList.remove('active');
+        });
+
+        menuPopup.addEventListener('click', (e) => {
+            if (e.target === menuPopup) {
+                menuPopup.classList.remove('active');
+            }
         });
     });
 </script>
