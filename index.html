@@ -1070,11 +1070,13 @@
 <section id="contact" class="section contact">
     <h2>Book Now</h2>
     <p>We can't wait to hear from you! Whether you're planning a small dinner or a big bash, let's make it unforgettable together.</p>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
+    <form action="https://formspree.io/f/mvgqapnk" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
-        <input type="date" name="date" placeholder="Preferred Date" required>
+        <input type="text" name="date" placeholder="Date of Event" required>
+        <input type="text" name="location" placeholder="General Location of Event" required>
         <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <input type="text" name="_gotcha" style="display:none" class="honeypot">
         <button type="submit" class="btn btn-large">Submit</button>
     </form>
     <div class="contact-links">
