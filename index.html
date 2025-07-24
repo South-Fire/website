@@ -697,6 +697,7 @@
             justify-content: center;
         }
 
+        .newsletter input[type="text"],
         .newsletter input[type="email"] {
             padding: 0.8rem;
             border: none;
@@ -708,6 +709,7 @@
             min-width: 200px;
         }
 
+        body.light-mode .newsletter input[type="text"],
         body.light-mode .newsletter input[type="email"] {
             background: #e0e0e0;
             color: #000000;
@@ -771,6 +773,7 @@
             justify-content: center;
         }
 
+        .popup-content input[type="text"],
         .popup-content input[type="email"] {
             padding: 0.8rem;
             border: none;
@@ -782,6 +785,7 @@
             min-width: 200px;
         }
 
+        body.light-mode .popup-content input[type="text"],
         body.light-mode .popup-content input[type="email"] {
             background: #e0e0e0;
             color: #000000;
@@ -999,7 +1003,6 @@
         </div>
     </div>
     <button class="btn view-menu">View Sample Menu</button>
-
 </section>
 
 <!-- Events Section -->
@@ -1077,21 +1080,21 @@
         <input type="text" name="location" placeholder="General Location of Event" required>
         <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
         <input type="text" name="_gotcha" style="display:none" class="honeypot">
-        <input type="hidden" name="_next" value="https://southfire.ca/index2.html">
         <button type="submit" class="btn btn-large">Submit</button>
     </form>
-    <div class="contact-links">
-        <a href="tel:+1234567890" class="btn">Call Us</a>
-        <a href="mailto:info@southfire.ca" class="btn">Email Us</a>
-    </div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
     <div class="newsletter">
         <h3>Stay Updated</h3>
-        <form action="https://your-mailchimp-form-url" method="POST">
+        <form action="https://zambris.us6.list-manage.com/subscribe/post?u=2ef0c5036db7454c2549ec6b9&id=21ae7d14ce&f_id=00ad55e5f0" method="POST" target="_blank">
+            <input type="text" name="FNAME" placeholder="First Name" required>
+            <input type="text" name="LNAME" placeholder="Last Name" required>
             <input type="email" name="EMAIL" placeholder="Your Email" required>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_2ef0c5036db7454c2549ec6b9_21ae7d14ce" tabindex="-1" value="">
+            </div>
             <button type="submit" class="btn">Subscribe</button>
         </form>
     </div>
@@ -1113,8 +1116,13 @@
         <button class="popup-close" aria-label="Close popup">✕</button>
         <h3>Join Our Newsletter</h3>
         <p>Stay in the loop with exclusive updates, event invites, and fiery recipes!</p>
-        <form action="https://your-mailchimp-form-url" method="POST">
+        <form action="https://zambris.us6.list-manage.com/subscribe/post?u=2ef0c5036db7454c2549ec6b9&id=21ae7d14ce&f_id=00ad55e5f0" method="POST" target="_blank">
+            <input type="text" name="FNAME" placeholder="First Name" required>
+            <input type="text" name="LNAME" placeholder="Last Name" required>
             <input type="email" name="EMAIL" placeholder="Your Email" required>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_2ef0c5036db7454c2549ec6b9_21ae7d14ce" tabindex="-1" value="">
+            </div>
             <button type="submit" class="btn">Subscribe</button>
         </form>
     </div>
