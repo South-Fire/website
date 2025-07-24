@@ -376,7 +376,7 @@
         .experience-card h3 {
             font-size: 2.2rem;
             color: var(--text-color-dark);
-            margin:1.5rem 0;
+            margin: 1.5rem 0;
             line-height: 1.3;
             font-weight: 600;
         }
@@ -919,7 +919,7 @@
             <a href="#gallery">Gallery</a>
             <a href="#contact">Contact</a>
         </div>
-        <button class="mode-toggle" aria-label="Toggle light/dark mode">🌙</button>
+        <button class="mode-toggle" aria-label="Toggle light/dark mode">🌞</button>
         <div class="hamburger">☰</div>
     </div>
 </nav>
@@ -946,8 +946,8 @@
     <p>At South Fire, we specialize in live-fire cooking — bringing bold flavours and a deep, meaningful experience to the table. For us, cooking is more than just preparing food. It’s about sharing who we are. Every dish carries a story, a memory, a part of our journey.</p>
     <p>Some of these stories come from the places we’ve been, the people we've cooked for, and the fires we’ve sat beside. Others might remind you of your own — your family, your roots, your connection to food. Because food isn’t just something we eat. It’s a cultural event. A language. And we love sharing it with you.</p>
     <h2>About Emily and Matias</h2>
-    <p>Emily Davies brings a fiery passion to South Fire, drawing from her roots in Southern barbecue traditions. Growing up in a family that cherished slow-cooked meals and backyard gatherings, she honed her craft through years of experimenting with open flames, blending bold spices with time-honored techniques to create dishes that feel like home.</p>
-    <p>Matias Sallaberry, with his Argentine heritage, infuses South Fire with the soul of asado. His love for fire-cooking was sparked as a kid, watching his abuelo grill over glowing embers. Matias crafts each dish with precision and heart, turning every event into a celebration of flavor and connection.</p>
+    <p>South Fire is run by Emily and Matias, a husband-and-wife team who share a deep love for bringing people together around great food and unforgettable moments. Emily’s background in hospitality and event planning—everything from intimate winemaker dinners to full-blown weddings—shines through in every detail of what we do.</p>
+    <p>Matias grew up in Argentina, where his passion for cooking with fire started early, watching his abuelo (grandfather) tend the grill. That same spark fuels South Fire today. His approach is rooted in tradition, but driven by creativity—every dish is made with care, and every fire is lit with intention. Together, we believe that food has the power to create connection, and we’re here to help you celebrate life’s moments with something truly special.</p>
 </section>
 
 <!-- Updated Experiences Section -->
@@ -1179,22 +1179,23 @@
     const modeToggle = document.querySelector('.mode-toggle');
     const body = document.body;
 
-    // Set light mode by default unless dark mode is explicitly set
-    if (localStorage.getItem('theme') !== 'dark') {
-        body.classList.add('light-mode');
+    // Set dark mode by default unless light mode is explicitly set
+    if (localStorage.getItem('theme') !== 'light') {
+        body.classList.remove('light-mode');
         modeToggle.textContent = '🌞';
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('theme', 'dark');
     } else {
+        body.classList.add('light-mode');
         modeToggle.textContent = '🌙';
     }
 
     modeToggle.addEventListener('click', () => {
         body.classList.toggle('light-mode');
         if (body.classList.contains('light-mode')) {
-            modeToggle.textContent = '🌞';
+            modeToggle.textContent = '🌙';
             localStorage.setItem('theme', 'light');
         } else {
-            modeToggle.textContent = '🌙';
+            modeToggle.textContent = '🌞';
             localStorage.setItem('theme', 'dark');
         }
     });
