@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thank You for Subscribing - South Fire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        /* CSS Variables */
+        :root {
+            --bg-primary-dark: #000000;
+            --bg-secondary-dark: #1a1a1a;
+            --bg-primary-light: #FFF8E7;
+            --bg-secondary-light: #F5F5DC;
+            --text-color-dark: #ffffff;
+            --text-color-light: #4B2E2A;
+            --accent-color: #D97706;
+            --accent-color-hover: #B45309;
+        }
+
+        /* Body Styles */
+        body {
+            background: var(--bg-primary-dark);
+            color: var(--text-color-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background: var(--bg-primary-light);
+            color: var(--text-color-light);
+        }
+
+        /* Headings */
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light-mode h1 {
+            color: var(--text-color-light);
+            text-shadow: none;
+        }
+
+        /* Paragraph */
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        body.light-mode p {
+            color: var(--text-color-light);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--accent-color-hover);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        /* Container */
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary-dark);
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 2rem;
+        }
+
+        body.light-mode .container {
+            background: var(--bg-secondary-light);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .btn-large {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Thank You for Subscribing!</h1>
+    <p>We're thrilled to have you join the South Fire community. Get ready for exclusive updates, fiery recipes, and invitations to our unforgettable events!</p>
+    <a href="index.html" class="btn btn-large">Return to Home Page</a>
+</div>
+</body>
+</html>
