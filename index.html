@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/favicon/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.css">
     <style>
         /* Reset and Base Styles */
@@ -29,6 +29,7 @@
             --text-color-light: #4B2E2A;
             --accent-color: #D97706;
             --accent-color-hover: #B45309;
+            --fire-gradient: linear-gradient(45deg, #D97706, #FF4500);
         }
 
         /* Body Styles */
@@ -44,7 +45,7 @@
         }
 
         /* Headings */
-        h1, h2, h3 {
+        h1, h2, h3, h4, h5 {
             font-family: 'Playfair+Display', serif;
         }
 
@@ -965,12 +966,47 @@
             color: var(--accent-color-hover);
         }
 
-        /* Styles for Menu Popup */
+        /* Enhanced Menu Popup Styles */
+        .menu-popup-content {
+            background: var(--bg-secondary-dark);
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 700px;
+            width: 95%;
+            position: relative;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.4s ease-in-out;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" opacity="0.1"%3E%3Cdefs%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3C/defs%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
+            background-size: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        body.light-mode .menu-popup-content {
+            background: var(--bg-secondary-light);
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" opacity="0.15"%3E%3Cdefs%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3C/defs%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-popup-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--fire-gradient);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
         .menu {
             max-height: 60vh;
             overflow-y: auto;
-            padding-right: 1rem;
-            text-align: left;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         .menu::-webkit-scrollbar {
@@ -994,15 +1030,105 @@
             background: var(--accent-color-hover);
         }
 
-        .menu h4 {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
+        .menu-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .menu p {
-            font-size: 1rem;
-            margin: 0.3rem 0;
+        body.light-mode .menu-section {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-section h4 {
+            font-family: 'Playfair+Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .menu-section h4::after {
+            content: '🔥';
+            position: absolute;
+            right: -21px;
+            top: 0;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .menu-section p {
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            color: var(--text-color-dark);
+            line-height: 1.4;
+        }
+
+        body.light-mode .menu-section p {
+            color: var(--text-color-light);
+        }
+
+        .menu-section p::before {
+            content: '•';
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .menu-popup-content p:last-child {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                max-height: 50vh;
+                grid-template-columns: 1fr;
+            }
+
+            .menu-popup-content {
+                padding: 2rem;
+            }
+
+            .menu-section h4 {
+                font-size: 1.3rem;
+            }
+
+            .menu-section p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu {
+                max-height: 40vh;
+            }
+
+            .menu-popup-content {
+                padding: 1.5rem;
+            }
+
+            .menu-section h4 {
+                font-size: 1.2rem;
+            }
+
+            .menu-section p {
+                font-size: 1rem;
+            }
         }
 
         /* Responsive Design */
@@ -1038,10 +1164,6 @@
                 font-size: 1.8rem;
                 margin: 1.2rem 0;
             }
-
-            .menu {
-                max-height: 50vh;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1075,10 +1197,6 @@
             h3 {
                 font-size: 1.6rem;
                 margin: 1rem 0;
-            }
-
-            .menu {
-                max-height: 40vh;
             }
         }
     </style>
@@ -1185,7 +1303,6 @@
 <section id="events" class="section events">
     <h2>Upcoming Events</h2>
     <div class="event-grid">
-
         <div class="event-card">
             <img src="./assets/img/open-fire-cook.jpg" alt="Brewery & the Beast" class="event-card-image">
             <div class="event-card-content">
@@ -1318,34 +1435,46 @@
 
 <!-- Menu Popup -->
 <div class="popup-overlay" id="menu-popup">
-    <div class="popup-content">
+    <div class="popup-content menu-popup-content">
         <button class="popup-close" aria-label="Close popup">✕</button>
         <h3>Sample Menu</h3>
         <div class="menu">
-            <h4>Welcome Cocktail</h4>
-            <p>Oyster Flambadou</p>
-            <h4>Welcome Bites</h4>
-            <p>Spot Prawns • Sooke Winged Kelp</p>
-            <p>Anticucho • Chicken Hearts, Peanuts & Aji Amarillo</p>
-            <p>Choripan • Pork Sausage & Chimichurri</p>
-            <p>Beef Empanada • Llajua</p>
-            <h4>Stationary</h4>
-            <p>Cold Cuts & Cheese</p>
-            <p>House-made Preserves & Ferment</p>
-            <p>Sourdough Bread & Focaccia</p>
-            <h4>Vegetables</h4>
-            <p>Seasonal organic vegetables cooked over the fire</p>
-            <p>Grilled Baby Romaine • Parmigiano • Blackberry Balsamic Vinegar • Lockwood Farm Eggs</p>
-            <p>Tetsukabuto Winter Squash • Chickpea Miso</p>
-            <p>BC Kennebec Potatoes • Herbs • Pimentón de Cachi</p>
-            <p>Dandelion Greens • Salsa Verde</p>
-            <h4>Main</h4>
-            <p>Whole Roasted Lingcod • Maple blossom butter</p>
-            <p>BC Fed Gras “Vacío” • Bavette Steak • Salsa Criolla</p>
-            <p>Island-Raised Organic Chicken • Achiote BBQ Sauce</p>
-            <h4>Dessert</h4>
-            <p>Panqueques con dulce de leche</p>
-            <p>Crepe Brûlée with our organic BC Milk Dulce de Leche</p>
+            <div class="menu-section">
+                <h4>Welcome Cocktail</h4>
+                <p>Oyster Flambadou</p>
+            </div>
+            <div class="menu-section">
+                <h4>Welcome Bites</h4>
+                <p>Spot Prawns • Sooke Winged Kelp</p>
+                <p>Anticucho • Chicken Hearts, Peanuts & Aji Amarillo</p>
+                <p>Choripan • Pork Sausage & Chimichurri</p>
+                <p>Beef Empanada • Llajua</p>
+            </div>
+            <div class="menu-section">
+                <h4>Stationary</h4>
+                <p>Cold Cuts & Cheese</p>
+                <p>House-made Preserves & Ferment</p>
+                <p>Sourdough Bread & Focaccia</p>
+            </div>
+            <div class="menu-section">
+                <h4>Vegetables</h4>
+                <p>Seasonal organic vegetables cooked over the fire</p>
+                <p>Grilled Baby Romaine • Parmigiano • Blackberry Balsamic Vinegar • Lockwood Farm Eggs</p>
+                <p>Tetsukabuto Winter Squash • Chickpea Miso</p>
+                <p>BC Kennebec Potatoes • Herbs • Pimentón de Cachi</p>
+                <p>Dandelion Greens • Salsa Verde</p>
+            </div>
+            <div class="menu-section">
+                <h4>Main</h4>
+                <p>Whole Roasted Lingcod • Maple blossom butter</p>
+                <p>BC Fed Gras “Vacío” • Bavette Steak • Salsa Criolla</p>
+                <p>Island-Raised Organic Chicken • Achiote BBQ Sauce</p>
+            </div>
+            <div class="menu-section">
+                <h4>Dessert</h4>
+                <p>Panqueques con dulce de leche</p>
+                <p>Crepe Brûlée with our organic BC Milk Dulce de Leche</p>
+            </div>
         </div>
         <p>Let us make your own menu…</p>
     </div>
