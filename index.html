@@ -324,29 +324,139 @@
             color: var(--text-color-light);
         }
 
-        /* About, Gallery, and Events Sections */
-        .about, .gallery, .events {
+        /* About Section */
+        .about {
             background: var(--bg-secondary-dark);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 2rem;
         }
 
-        body.light-mode .about, body.light-mode .gallery, body.light-mode .events {
+        body.light-mode .about {
             background: var(--bg-secondary-light);
         }
 
-        .about p {
-            max-width: 800px;
-            margin: 0 auto 1rem;
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--fire-gradient);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        body.light-mode .about-content {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-content h2 {
+            font-size: 3rem;
+            font-family: 'Playfair+Display', serif;
+            color: var(--text-color-dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        body.light-mode .about-content h2 {
+            color: var(--text-color-light);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--fire-gradient);
+            margin: 1rem auto;
+        }
+
+        .about-content p {
             font-size: 1.2rem;
-            line-height: 1.6;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-family: 'Georgia', serif;
+            color: var(--text-color-dark);
         }
 
-        .about a {
-            color: inherit;
+        body.light-mode .about-content p {
+            color: var(--text-color-light);
+        }
+
+        .about-content a {
+            color: var(--accent-color);
             text-decoration: none;
+            font-weight: bold;
         }
 
-        .about a:hover {
+        .about-content a:hover {
             color: var(--accent-color-hover);
+            text-decoration: underline;
+        }
+
+        .about-story, .about-founders {
+            margin-bottom: 3rem;
+        }
+
+        .about-story img, .about-founders img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 2rem auto;
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .about-story img:hover, .about-founders img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .about {
+                padding: 5rem 1rem;
+            }
+
+            .about-content {
+                padding: 2rem;
+            }
+
+            .about-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-content p {
+                font-size: 1.1rem;
+            }
         }
 
         /* Experience Section */
@@ -1232,12 +1342,20 @@
 
 <!-- About Section -->
 <section id="about" class="section about">
-    <h2>Our Story</h2>
-    <p>At South Fire, we specialize in live-fire cooking — bringing bold flavours and a deep, meaningful experience to the table. For us, cooking is more than just preparing food. It’s about sharing who we are. Every dish carries a story, a memory, a part of our journey.</p>
-    <p>Some of these stories come from the places we’ve been, the people we've cooked for, and the fires we’ve sat beside. Others might remind you of your own — your family, your roots, your connection to food. Because food isn’t just something we eat. It’s a cultural event. A language. And we love sharing it with you.</p>
-    <h2>About Emily and Matias</h2>
-    <p>South Fire is run by Emily and Matias, a husband-and-wife team who share a deep love for bringing people together around great food and unforgettable moments. Emily’s background in hospitality and event planning—everything from intimate winemaker dinners to full-blown weddings—shines through in every detail of what we do.</p>
-    <p>Matias grew up in Argentina, where his passion for cooking with fire started early, watching his abuelo (grandfather) tend the grill. That same spark fuels South Fire today. His approach is rooted in tradition, but driven by creativity—every dish is made with care, and every fire is lit with intention. Together, we believe that food has the power to create connection, and we’re here to help you celebrate life’s moments with something truly special.</p>
+    <div class="about-content">
+        <div class="about-story">
+            <h2>Our Story</h2>
+            <p>At South Fire, we specialize in live-fire cooking — bringing bold flavours and a deep, meaningful experience to the table. For us, cooking is more than just preparing food. It’s about sharing who we are. Every dish carries a story, a memory, a part of our journey.</p>
+            <p>Some of these stories come from the places we’ve been, the people we've cooked for, and the fires we’ve sat beside. Others might remind you of your own — your family, your roots, your connection to food. Because food isn’t just something we eat. It’s a cultural event. A language. And we love sharing it with you.</p>
+            <img src="./assets/img/firepit-outside.jpg" alt="Live-fire cooking scene">
+        </div>
+        <div class="about-founders">
+            <h2>About Emily and Matias</h2>
+            <p>South Fire is run by Emily and Matias, a husband-and-wife team who share a deep love for bringing people together around great food and unforgettable moments. Emily’s background in hospitality and event planning—everything from intimate winemaker dinners to full-blown weddings—shines through in every detail of what we do.</p>
+            <p>Matias grew up in Argentina, where his passion for cooking with fire started early, watching his abuelo (grandfather) tend the grill. That same spark fuels South Fire today. His approach is rooted in tradition, but driven by creativity—every dish is made with care, and every fire is lit with intention. Together, we believe that food has the power to create connection, and we’re here to help you celebrate life’s moments with something truly special.</p>
+            <img src="./assets/img/emily-matias-outside.jpg" alt="Emily and Matias">
+        </div>
+    </div>
 </section>
 
 <!-- Updated Experiences Section -->
