@@ -269,18 +269,21 @@
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 60px; /* Moved higher for better visibility */
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
             animation: bounce 2s infinite;
-            color: var(--accent-color);
+            color: var(--accent-color); /* Consistent orange color */
             font-size: 2rem;
             cursor: pointer;
+            -webkit-text-fill-color: var(--accent-color); /* Ensure color consistency on iOS */
+            text-shadow: 0 0 4px rgba(217, 119, 6, 0.5); /* Subtle glow for visibility */
         }
 
         .scroll-indicator:hover {
             color: var(--accent-color-hover);
+            -webkit-text-fill-color: var(--accent-color-hover); /* Hover color for iOS */
         }
 
         @keyframes bounce {
@@ -297,8 +300,24 @@
 
         @media (max-width: 768px) {
             .scroll-indicator {
-                bottom: 30px;
+                bottom: 50px; /* Adjusted for smaller screens */
                 font-size: 1.5rem;
+                color: var(--accent-color); /* Explicitly set for mobile */
+                -webkit-text-fill-color: var(--accent-color); /* Ensure iOS consistency */
+            }
+        }
+
+        /* iOS-specific styling for scroll indicator */
+        @supports (-webkit-touch-callout: none) {
+            .scroll-indicator {
+                color: #D97706; /* Explicit hex for iOS */
+                -webkit-text-fill-color: #D97706; /* Force orange color */
+                text-shadow: 0 0 4px rgba(217, 119, 6, 0.5); /* Consistent glow */
+            }
+
+            .scroll-indicator:hover {
+                color: #B45309;
+                -webkit-text-fill-color: #B45309;
             }
         }
 
