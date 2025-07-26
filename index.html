@@ -500,37 +500,150 @@
             font-size: 1rem;
         }
 
-        /* New Styles for Updated Experiences Section */
-        .dining-experience, .events-crafted {
+        /* Enhanced Dining Experience Section */
+        .dining-experience {
             margin-bottom: 3rem;
+            position: relative;
+            padding: 3rem 2rem;
+            background: var(--bg-secondary-dark);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+
+        body.light-mode .dining-experience {
+            background: var(--bg-secondary-light);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .dining-experience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--fire-gradient);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .dining-experience-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dining-experience h3 {
+            font-size: 2.8rem;
+            font-family: 'Playfair+Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        body.light-mode .dining-experience h3 {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .dining-experience h3::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--fire-gradient);
+            margin: 1rem auto;
+        }
+
+        .dining-experience p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-family: 'Georgia', serif;
         }
 
         .formats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .format-card {
-            background: var(--bg-secondary-dark);
-            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
             border-radius: 10px;
             text-align: left;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(217, 119, 6, 0.2);
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" opacity="0.1"%3E%3Cdefs%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3C/defs%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
+            background-size: cover;
         }
 
         body.light-mode .format-card {
-            background: var(--bg-secondary-light);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" opacity="0.15"%3E%3Cdefs%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3C/defs%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E');
+        }
+
+        .format-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         }
 
         .format-card h5 {
+            font-family: 'Playfair+Display', serif;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .format-card h5::after {
+            content: '🔥';
+            position: absolute;
+            right: -21px;
+            top: 0;
             font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            opacity: 0.7;
         }
 
         .format-card p {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color-dark);
+        }
+
+        body.light-mode .format-card p {
+            color: var(--text-color-light);
+        }
+
+        @media (max-width: 768px) {
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dining-experience {
+                padding: 2rem 1rem;
+            }
+
+            .dining-experience h3 {
+                font-size: 2.2rem;
+            }
+
+            .dining-experience p {
+                font-size: 1.1rem;
+            }
+        }
+
+        .events-crafted {
+            margin-bottom: 3rem;
         }
 
         .events-grid {
@@ -1362,24 +1475,26 @@
 <section id="experiences" class="section experience">
     <h2>Experiences</h2>
     <div class="dining-experience">
-        <h3>Dining Experience</h3>
-        <p>Our approach to cooking is rooted in tradition, blending traditional South American fire-cooking techniques with the best organic and local produce from our partnered farms or our garden. Each menu is crafted to reflect the season, the occasion, and the people around the fire.</p>
-        <p><strong>Dining Formats (3 types):</strong></p>
-        <div class="formats-grid">
-            <div class="format-card">
-                <h5>Seated Multi-Course Meal</h5>
-                <p>A refined tasting menu showcasing the depth and elegance of fire-cooked cuisine.</p>
+        <div class="dining-experience-content">
+            <h3>Dining Experience</h3>
+            <p>Our approach to cooking is rooted in tradition, blending traditional South American fire-cooking techniques with the best organic and local produce from our partnered farms or our garden. Each menu is crafted to reflect the season, the occasion, and the people around the fire.</p>
+            <p><strong>Dining Formats (3 types):</strong></p>
+            <div class="formats-grid">
+                <div class="format-card">
+                    <h5>Seated Multi-Course Meal</h5>
+                    <p>A refined tasting menu showcasing the depth and elegance of fire-cooked cuisine.</p>
+                </div>
+                <div class="format-card">
+                    <h5>Family-Style Feast</h5>
+                    <p>A convivial dining experience with generous platters for sharing, emphasizing warmth and connection.</p>
+                </div>
+                <div class="format-card">
+                    <h5>Live Fire Experience</h5>
+                    <p>An intimate, hands-on culinary journey for small groups looking to connect with the process, featuring guided fire-cooking techniques and a meal prepared entirely over open flames.</p>
+                </div>
             </div>
-            <div class="format-card">
-                <h5>Family-Style Feast</h5>
-                <p>A convivial dining experience with generous platters for sharing, emphasizing warmth and connection.</p>
-            </div>
-            <div class="format-card">
-                <h5>Live Fire Experience</h5>
-                <p>An intimate, hands-on culinary journey for small groups looking to connect with the process, featuring guided fire-cooking techniques and a meal prepared entirely over open flames.</p>
-            </div>
+            <a href="#contact" class="btn btn-large" style="margin-top: 2rem;">Book an Experience</a>
         </div>
-        <a href="#contact" class="btn btn-large" style="margin-top: 2rem;">Book an Experience</a>
     </div>
     <div class="events-crafted">
         <h3>Events Crafted with Fire</h3>
