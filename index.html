@@ -838,46 +838,80 @@
             padding: 1rem;
             position: relative;
             -webkit-overflow-scrolling: touch;
+            scrollbar-width: auto; /* Standard property for Firefox */
+            background: var(--bg-primary-dark); /* Ensure container background matches body */
+        }
+
+        /* Inner wrapper to isolate content and scrollbar */
+        .gallery-container .gallery-inner {
+            padding-right: 12px; /* Prevent content from touching scrollbar */
         }
 
         .gallery-container::-webkit-scrollbar {
-            width: 12px;
+            width: 12px; /* Slightly wider for touch interaction */
+            height: 12px;
         }
 
         .gallery-container::-webkit-scrollbar-track {
-            background: #2c2c2c;
+            background: #2c2c2c; /* Dark track */
+            border: 1px solid #444; /* Add border for contrast */
             border-radius: 6px;
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
         }
 
         body.light-mode .gallery-container::-webkit-scrollbar-track {
             background: #e0e0e0;
-            border: 1px solid #ccc;
+            border: 1px solid #bbb;
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
         }
 
         .gallery-container::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
+            background: var(--accent-color); /* Orange thumb */
             border-radius: 6px;
-            border: 2px solid transparent;
+            border: 2px solid #2c2c2c; /* Match track for dark mode */
             background-clip: content-box;
+        }
+
+        body.light-mode .gallery-container::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border: 2px solid #e0e0e0; /* Match light mode track */
         }
 
         .gallery-container::-webkit-scrollbar-thumb:hover {
             background: var(--accent-color-hover);
-            border: 2px solid transparent;
-            background-clip: content-box;
         }
 
-        /* Ensure scrollbar visibility on iOS */
-        @media (max-width: 768px) {
+        /* iOS-specific styling */
+        @supports (-webkit-touch-callout: none) {
             .gallery-container {
-                -webkit-appearance: none;
                 scrollbar-width: thin;
-                scrollbar-color: var(--accent-color) #2c2c2c;
+                -webkit-appearance: none;
             }
 
-            body.light-mode .gallery-container {
-                scrollbar-color: var(--accent-color) #e0e0e0;
+            .gallery-container::-webkit-scrollbar {
+                width: 10px;
             }
+
+            .gallery-container::-webkit-scrollbar-thumb {
+                background: #D97706; /* Explicit orange hex for iOS */
+                border: 2px solid #2c2c2c;
+                box-shadow: 0 0 4px rgba(255, 255, 255, 0.3); /* Glow effect */
+            }
+
+            body.light-mode .gallery-container::-webkit-scrollbar-thumb {
+                border: 2px solid #e0e0e0;
+                box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* Animation for scroll hint */
+        .gallery-container.scroll-hint::-webkit-scrollbar-thumb {
+            animation: glow 1.5s ease-in-out 2;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 4px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
         }
 
         .gallery-grid {
@@ -1578,42 +1612,44 @@
 <section id="gallery" class="section gallery">
     <h2>Gallery</h2>
     <div class="gallery-container">
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <a href="./assets/img/open-fire-cook.jpg">
-                    <img src="./assets/img/open-fire-cook.jpg" alt="Winemakers lunch in Tarija Bolivia">
-                </a>
-                <div class="caption">Winemakers lunch in Tarija Bolivia, over 2000m absl with Jardin Oculto. No kitchen - everything cooked over live-fire.</div>
-            </div>
-            <div class="gallery-item">
-                <a href="./assets/img/chicken-peppers.webp">
-                    <img src="./assets/img/chicken-peppers.webp" alt="The Pyramid of Fire for Brewery and the Beast 2024">
-                </a>
-                <div class="caption">The Pyramid of Fire for Brewery & the Beast 2024</div>
-            </div>
-            <div class="gallery-item">
-                <a href="./assets/img/bbq-cart-outside.jpg">
-                    <img src="./assets/img/bbq-cart-outside.jpg" alt="Private Asado Experience Event">
-                </a>
-                <div class="caption">Private Asado Experience Event</div>
-            </div>
-            <div class="gallery-item">
-                <a href="./assets/img/cooking.jpg">
-                    <img src="./assets/img/cooking.jpg" alt="Live-fire cooking workshop">
-                </a>
-                <div class="caption">Live-fire cooking workshop</div>
-            </div>
-            <div class="gallery-item">
-                <a href="./assets/img/emily-matias-outside.jpg">
-                    <img src="./assets/img/emily-matias-outside.jpg" alt="Winemakers dinner in Naramata, BC with Serendipity Winery">
-                </a>
-                <div class="caption">Winemakers dinner in Naramata, BC with Serendipity Winery. Whole lamb a la cruz was the main! Cooked over live-fire.</div>
-            </div>
-            <div class="gallery-item">
-                <a href="./assets/img/firepit-outside.jpg">
-                    <img src="./assets/img/firepit-outside.jpg" alt="Rustic Pizza oven">
-                </a>
-                <div class="caption">Rustic Pizza oven built using repurposed items at Matias’ Grandmother’s beach house in Argentina. </div>
+        <div class="gallery-inner">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <a href="./assets/img/open-fire-cook.jpg">
+                        <img src="./assets/img/open-fire-cook.jpg" alt="Winemakers lunch in Tarija Bolivia">
+                    </a>
+                    <div class="caption">Winemakers lunch in Tarija Bolivia, over 2000m absl with Jardin Oculto. No kitchen - everything cooked over live-fire.</div>
+                </div>
+                <div class="gallery-item">
+                    <a href="./assets/img/chicken-peppers.webp">
+                        <img src="./assets/img/chicken-peppers.webp" alt="The Pyramid of Fire for Brewery and the Beast 2024">
+                    </a>
+                    <div class="caption">The Pyramid of Fire for Brewery & the Beast 2024</div>
+                </div>
+                <div class="gallery-item">
+                    <a href="./assets/img/bbq-cart-outside.jpg">
+                        <img src="./assets/img/bbq-cart-outside.jpg" alt="Private Asado Experience Event">
+                    </a>
+                    <div class="caption">Private Asado Experience Event</div>
+                </div>
+                <div class="gallery-item">
+                    <a href="./assets/img/cooking.jpg">
+                        <img src="./assets/img/cooking.jpg" alt="Live-fire cooking workshop">
+                    </a>
+                    <div class="caption">Live-fire cooking workshop</div>
+                </div>
+                <div class="gallery-item">
+                    <a href="./assets/img/emily-matias-outside.jpg">
+                        <img src="./assets/img/emily-matias-outside.jpg" alt="Winemakers dinner in Naramata, BC with Serendipity Winery">
+                    </a>
+                    <div class="caption">Winemakers dinner in Naramata, BC with Serendipity Winery. Whole lamb a la cruz was the main! Cooked over live-fire.</div>
+                </div>
+                <div class="gallery-item">
+                    <a href="./assets/img/firepit-outside.jpg">
+                        <img src="./assets/img/firepit-outside.jpg" alt="Rustic Pizza oven">
+                    </a>
+                    <div class="caption">Rustic Pizza oven built using repurposed items at Matias’ Grandmother’s beach house in Argentina. </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1837,6 +1873,22 @@
     sections.forEach(section => {
         observer.observe(section);
     });
+
+    // Scroll hint for gallery
+    const galleryContainer = document.querySelector('.gallery-container');
+    const galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                galleryContainer.classList.add('scroll-hint');
+                setTimeout(() => {
+                    galleryContainer.classList.remove('scroll-hint');
+                }, 4500); // Remove hint after 4.5 seconds (2 animation cycles)
+                galleryObserver.unobserve(galleryContainer);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    galleryObserver.observe(galleryContainer);
 
     // Initialize SimpleLightbox
     document.addEventListener('DOMContentLoaded', function() {
