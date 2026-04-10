@@ -1407,7 +1407,6 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.js"></script>
 <script>
     // Hamburger Menu Toggle
@@ -1452,40 +1451,6 @@
             audioToggle.textContent = '🔊';
             isAudioOn = true;
         }
-    });
-
-    // Particles.js Configuration for Ember Effect - Updated to red tones
-    particlesJS({
-        particles: {
-            number: { value: 100, density: { enable: true, value_area: 800 } },
-            color: { value: ['#9b1515', '#c81d1d', '#e02a2a', '#ff5555'] },
-            shape: { type: 'circle', stroke: { width: 0 } },
-            opacity: {
-                value: 0.7,
-                random: true,
-                anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
-            },
-            size: { value: 2, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
-            line_linked: { enable: false },
-            move: {
-                enable: true,
-                speed: 3,
-                direction: 'top',
-                random: false,
-                straight: false,
-                out_mode: 'out',
-                bounce: false,
-                attract: { enable: false }
-            }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: { enable: true, mode: 'repulse' },
-                onclick: { enable: true, mode: 'push' }
-            }
-        },
-        retina_detect: true
     });
 
     // Scroll-Triggered Animations
