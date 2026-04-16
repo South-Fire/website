@@ -8,7 +8,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/favicon/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
+    <!-- Font Awesome for official Instagram & Facebook logos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.css">
     <style>
         /* Reset and Base Styles */
@@ -77,6 +79,17 @@
             .logo img {
                 height: 60px;
             }
+        }
+
+        .logo .south {
+            font-family: 'Bebas Neue', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo .fire {
+            font-family: 'Caveat', cursive;
+            text-transform: uppercase;
         }
 
         .nav-links {
@@ -1144,7 +1157,7 @@
 <nav class="navbar">
     <div class="logo">
         <img src="./assets/img/logo.jpg" alt="South Fire Logo">
-        South Fire
+        <span class="south">SOUTH</span><span class="fire">&nbsp;FIRE</span>
     </div>
     <div class="nav-links">
         <div class="nav-menu">
@@ -1183,13 +1196,14 @@
             <h2>Our Story</h2>
             <p>At South Fire, we specialize in live-fire cooking — bringing bold flavours and a deep, meaningful experience to the table. For us, cooking is more than just preparing food. It’s about sharing who we are. Every dish carries a story, a memory, a part of our journey.</p>
             <p>Some of these stories come from the places we’ve been, the people we've cooked for, and the fires we’ve sat beside. Others might remind you of your own — your family, your roots, your connection to food. Because food isn’t just something we eat. It’s a cultural event. A language. And we love sharing it with you.</p>
-            <img src="./assets/img/firepit-outside.jpg" alt="Live-fire cooking scene">
+            <p>Based in Victoria, BC, we travel wherever fire, food, and good people come together.</p>
+            <img src="./assets/images/our-story.webp" alt="Our Story">
         </div>
         <div class="about-founders">
             <h2>About Emily and Matias</h2>
             <p>South Fire is run by Emily and Matias, a husband-and-wife team who share a deep love for bringing people together around great food and unforgettable moments. Emily’s background in hospitality and event planning—everything from intimate winemaker dinners to full-blown weddings—shines through in every detail of what we do.</p>
             <p>Matias grew up in Argentina, where his passion for cooking with fire started early, watching his abuelo (grandfather) tend the grill. That same spark fuels South Fire today. His approach is rooted in tradition, but driven by creativity—every dish is made with care, and every fire is lit with intention. Together, we believe that food has the power to create connection, and we’re here to help you celebrate life’s moments with something truly special.</p>
-            <img src="./assets/img/emily-matias-outside.jpg" alt="Emily and Matias">
+            <img src="./assets/images/about-emily-and-matias.webp" alt="Emily and Matias">
         </div>
     </div>
 </section>
@@ -1223,11 +1237,11 @@
         <h3>Events Crafted with Fire</h3>
         <div class="events-grid">
             <a href="#contact" class="event-tile">
-                <img src="./assets/img/open-fire-cook.jpg" alt="Weddings & Rehearsal Dinners">
+                <img src="./assets/images/wedding-and-rehearsals-dinner.webp" alt="Weddings & Rehearsal Dinners">
                 <div class="tile-title">Weddings & Rehearsal Dinners</div>
             </a>
             <a href="#contact" class="event-tile">
-                <img src="./assets/img/chicken-peppers.webp" alt="Private Celebrations & Anniversaries">
+                <img src="./assets/images/private-celebrations-anniversaries.webp" alt="Private Celebrations & Anniversaries">
                 <div class="tile-title">Private Celebrations & Anniversaries</div>
             </a>
             <a href="#contact" class="event-tile">
@@ -1251,7 +1265,7 @@
     <h2>Upcoming Events</h2>
     <div class="event-grid">
         <div class="event-card">
-            <img src="./assets/img/chicken-peppers.webp" alt="Brewery & the Beast" class="event-card-image">
+            <img src="./assets/images/brewery-beast.webp" alt="Brewery & the Beast" class="event-card-image">
             <div class="event-card-content">
                 <h3>Brewery & the Beast</h3>
                 <p>Ignite your senses with our Pyramid of Fire at this epic culinary festival! Savor our signature fire-cooked dishes at:</p>
@@ -1265,7 +1279,7 @@
             </div>
         </div>
         <div class="event-card">
-            <img src="./assets/img/firepit-outside.jpg" alt="Empanada Pop-Up" class="event-card-image">
+            <img src="./assets/images/empanada-pop-up.webp" alt="Empanada Pop-Up" class="event-card-image">
             <div class="event-card-content">
                 <h3>Empanada Pop-Up</h3>
                 <p>Indulge in our authentic, fire-cooked empanadas bursting with bold, traditional flavors. A culinary experience that brings the heat and soul of South Fire to every bite.</p>
@@ -1282,41 +1296,75 @@
     <h2>Gallery</h2>
     <div class="gallery-container">
         <div class="gallery-grid">
+            <!-- 1 -->
             <div class="gallery-item">
-                <a href="./assets/img/open-fire-cook.jpg">
-                    <img src="./assets/img/open-fire-cook.jpg" alt="Winemakers lunch in Tarija Bolivia">
-                </a>
-                <div class="caption">Winemakers lunch in Tarija Bolivia, over 2000m absl with Jardin Oculto. No kitchen - everything cooked over live-fire.</div>
-            </div>
-            <div class="gallery-item">
-                <a href="./assets/img/chicken-peppers.webp">
-                    <img src="./assets/img/chicken-peppers.webp" alt="The Pyramid of Fire for Brewery and the Beast 2024">
-                </a>
-                <div class="caption">The Pyramid of Fire for Brewery & the Beast 2024</div>
-            </div>
-            <div class="gallery-item">
-                <a href="./assets/img/bbq-cart-outside.jpg">
-                    <img src="./assets/img/bbq-cart-outside.jpg" alt="Private Asado Experience Event">
+                <a href="./assets/images/private-asado-experience.webp">
+                    <img src="./assets/images/private-asado-experience.webp" alt="Private Asado Experience Event">
                 </a>
                 <div class="caption">Private Asado Experience Event</div>
             </div>
+            <!-- 2 -->
             <div class="gallery-item">
-                <a href="./assets/img/cooking.jpg">
-                    <img src="./assets/img/cooking.jpg" alt="Live-fire cooking workshop">
+                <a href="./assets/images/brewery-beast.webp">
+                    <img src="./assets/images/brewery-beast.webp" alt="Chef Matias at Brewery & the Beast 2025">
                 </a>
-                <div class="caption">Live-fire cooking workshop</div>
+                <div class="caption">Chef Matias at Brewery & the Beast 2025</div>
             </div>
+            <!-- 3 -->
             <div class="gallery-item">
-                <a href="./assets/img/emily-matias-outside.jpg">
-                    <img src="./assets/img/emily-matias-outside.jpg" alt="Winemakers dinner in Naramata, BC with Serendipity Winery">
+                <a href="./assets/images/the-pyramid-of-fire.webp">
+                    <img src="./assets/images/the-pyramid-of-fire.webp" alt="The Pyramid of Fire - Brewery & the Beast Calgary">
                 </a>
-                <div class="caption">Winemakers dinner in Naramata, BC with Serendipity Winery. Whole lamb a la cruz was the main! Cooked over live-fire.</div>
+                <div class="caption">The Pyramid of Fire - Brewery & the Beast Calgary</div>
             </div>
+            <!-- 4 -->
             <div class="gallery-item">
-                <a href="./assets/img/firepit-outside.jpg">
-                    <img src="./assets/img/firepit-outside.jpg" alt="Rustic Pizza oven">
+                <a href="./assets/images/the-team-culinaire-2025.webp">
+                    <img src="./assets/images/the-team-culinaire-2025.webp" alt="The team at Culinaire 2025">
                 </a>
-                <div class="caption">Rustic Pizza oven built using repurposed items at Matias’ Grandmother’s beach house in Argentina. </div>
+                <div class="caption">The team at Culinaire 2025</div>
+            </div>
+            <!-- 5 -->
+            <div class="gallery-item">
+                <a href="./assets/images/bolivia.webp">
+                    <img src="./assets/images/bolivia.webp" alt="Winemakers lunch in Tarija Bolivia">
+                </a>
+                <div class="caption">Winemakers lunch in Tarija, Bolivia, over 2000m absl. No kitchen - everything cooked over live-fire.</div>
+            </div>
+            <!-- 6 -->
+            <div class="gallery-item">
+                <a href="./assets/images/wine-dinner.webp">
+                    <img src="./assets/images/wine-dinner.webp" alt="Wine Dinner 2025">
+                </a>
+                <div class="caption">Wine Dinner 2025. Photo credit: Jessica Jefferson Photography</div>
+            </div>
+            <!-- 7 -->
+            <div class="gallery-item">
+                <a href="./assets/images/power-to-give.webp">
+                    <img src="./assets/images/power-to-give.webp" alt="Power to Give event 2025">
+                </a>
+                <div class="caption">Power to Give event 2025: Rack of Lamb.</div>
+            </div>
+            <!-- 8 -->
+            <div class="gallery-item">
+                <a href="./assets/images/corporate-retreat-in-sooke.webp">
+                    <img src="./assets/images/corporate-retreat-in-sooke.webp" alt="Corporate Retreat in Sooke">
+                </a>
+                <div class="caption">Corporate Retreat in Sooke, BC. Chef Matias building the welcome board, 3 whole suckling pigs roasting on the fire in the background.</div>
+            </div>
+            <!-- 9 -->
+            <div class="gallery-item">
+                <a href="./assets/images/grilling-cod.webp">
+                    <img src="./assets/images/grilling-cod.webp" alt="Chef Matias cooking lingcod">
+                </a>
+                <div class="caption">Chef Matias cooking lingcod over the grill for Wine Dinner Pop-Up: Journey Through Fire</div>
+            </div>
+            <!-- 10 -->
+            <div class="gallery-item">
+                <a href="./assets/images/private-asado.webp">
+                    <img src="./assets/images/private-asado.webp" alt="Asado Experience Set-Up">
+                </a>
+                <div class="caption">Asado Experience Set-Up</div>
             </div>
         </div>
     </div>
@@ -1331,24 +1379,28 @@
         <input type="email" name="email" placeholder="Your Email" required>
         <input type="text" name="date" placeholder="Date of Event" required>
         <input type="text" name="location" placeholder="General Location of Event" required>
+        <input type="text" name="guest_count" placeholder="Estimated Guest Count" required>
+        <input type="text" name="budget" placeholder="Estimated Budget" required>
         <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
         <input type="text" name="_gotcha" style="display:none" class="honeypot">
         <button type="submit" class="btn btn-large">Submit</button>
     </form>
 </section>
 
-<!-- Footer -->
+<!-- Footer with real logos -->
 <footer class="footer">
     <div class="footer-social">
-        <a href="https://instagram.com/southfire.ca" aria-label="South Fire Instagram">
-            📷 <span>@southfire.ca</span>
+        <a href="https://instagram.com/southfire.ca" target="_blank" rel="noopener" aria-label="South Fire Instagram">
+            <i class="fab fa-instagram fa-2x"></i>
+            <span>@southfire.ca</span>
         </a>
-        <a href="https://www.facebook.com/profile.php?id=100088326947956" aria-label="South Fire Facebook">
-            📘 <span>South Fire</span>
+        <a href="https://www.facebook.com/profile.php?id=100088326947956" target="_blank" rel="noopener" aria-label="South Fire Facebook">
+            <i class="fab fa-facebook fa-2x"></i>
+            <span>South Fire</span>
         </a>
     </div>
     <p>Thanks for stopping by! We hope to see you around the fire soon.</p>
-    <p>© 2025 South Fire. All rights reserved.</p>
+    <p>© 2026 South Fire. All rights reserved.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.10.3/dist/simple-lightbox.min.js"></script>
