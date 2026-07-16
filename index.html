@@ -117,6 +117,120 @@
     </script>
 
     <style>
+        /* Testimonials Carousel Styles */
+        .testimonials {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1078px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 2.5rem 2rem;
+            box-sizing: border-box;
+        }
+
+        .carousel-slide blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin: 0 0 1.5rem 0;
+            font-style: italic;
+        }
+
+        .carousel-slide cite {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 0rem;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            background: rgba(155, 21, 21, 0.85);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.6rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            pointer-events: all;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: #9b1515;
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #9b1515;
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .testimonials h2 {
+                font-size: 2.2rem;
+            }
+            .carousel-slide {
+                padding: 2rem 1.5rem;
+            }
+            .carousel-slide blockquote {
+                font-size: 1.1rem;
+            }
+        }
         .quick_form_7_css * {
             -webkit-box-sizing: border-box !important;
             -moz-box-sizing: border-box !important;
@@ -247,6 +361,47 @@
     </div>
 
     <!--Zoho Campaigns Web-Optin Form Ends Here-->
+
+    <!-- Testimonials Carousel Section -->
+    <section id="testimonials" class="section testimonials">
+        <h2>What Our Guests Say</h2>
+        <div class="carousel-container">
+            <div class="carousel-slides" id="carouselSlides">
+                <!-- Testimonial 1 -->
+                <div class="carousel-slide">
+                    <blockquote>
+                        "We hired South Fire to cater a meal in our home so we could thank several people who had helped us with our renovation. South Fire were very professional, arrived on time, served an absolutely outstanding multi course meal that many of us agreed was one of the best dining experiences we had ever had. We didn’t have to lift a finger and were able to spend the entire evening focussed on our guests. We highly recommend them!"
+                    </blockquote>
+                    <cite>— Sheila G.</cite>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="carousel-slide">
+                    <blockquote>
+                        "We have been lucky enough to attend several South Fire events and they have all been incredible. The food, service, presentation and attention to detail are always top notch and they are very accommodating to any dietary restrictions. Emily and Matias are amazing chefs and we always look forward to enjoying their amazing food and creations."
+                    </blockquote>
+                    <cite>— Kylyn A.</cite>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="carousel-slide">
+                    <blockquote>
+                        "South Fire was an absolute dream to work with! From our initial inquiry to the day of the event, everything was seamless. We hired South Fire for their Asado Experience to celebrate a special occasion for our family. Not only was their fire cooking set-up stunning, but the food tasted even better!! Tender meats, flavourful vegetable sides all with a nice smoky touch. The curry prawns were insanely delicious! We still talk about how amazing this day was and would absolutely hire South Fire again."
+                    </blockquote>
+                    <cite>— Taylor T.</cite>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonial">❮</button>
+                <button class="carousel-btn" id="nextBtn" aria-label="Next testimonial">❯</button>
+            </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
 
     <!-- Enhanced Events Section -->
     <section id="events" class="section events">
