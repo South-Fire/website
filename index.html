@@ -57,11 +57,24 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div id="particles-js"></div>
-        <video autoplay loop muted id="hero-video">
-            <source src="./assets/vid2.mp4" type="video/mp4">
+        <video autoplay loop muted playsinline preload="metadata" id="hero-video" poster="./assets/img/hero-poster.jpg">
+            <source src="./assets/vid2.mp4" type="video/mp4" media="(min-width: 769px)">
             Your browser does not support the video tag.
         </video>
-        <img loading="lazy" src="./assets/img/mobile-background.jpg" alt="Hero Image for Mobile" class="hero-mobile-image">
+        <img src="./assets/img/hero-poster.jpg" alt="" class="hero-poster">
+        <script>
+            (function () {
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                var heroVideo = document.getElementById('hero-video');
+                if (!heroVideo) return;
+                heroVideo.removeAttribute('autoplay');
+                heroVideo.pause();
+                heroVideo.querySelectorAll('source').forEach(function (source) {
+                    source.removeAttribute('src');
+                });
+                heroVideo.load();
+            })();
+        </script>
         <div class="hero-content">
             <h1>Events Crafted with Fire</h1>
             <p>Rooted in tradition. Cooked in fire. Shared with soul.</p>

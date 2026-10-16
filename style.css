@@ -180,7 +180,7 @@ h3 {
     filter: brightness(0.6);
 }
 
-.hero img.hero-mobile-image {
+.hero img.hero-poster {
     display: none;
     position: absolute;
     top: 0;
@@ -191,12 +191,12 @@ h3 {
     filter: brightness(0.6);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
     .hero video {
         display: none;
     }
 
-    .hero img.hero-mobile-image {
+    .hero img.hero-poster {
         display: block;
     }
 }
@@ -308,7 +308,7 @@ h3 {
     background: rgba(255, 255, 255, 0.4);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
     .audio-toggle {
         display: none;
     }
