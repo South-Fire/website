@@ -61,7 +61,13 @@
             <source src="./assets/vid2.mp4" type="video/mp4" media="(min-width: 769px)">
             Your browser does not support the video tag.
         </video>
-        <img src="./assets/img/hero-poster.jpg" alt="" class="hero-poster">
+        <picture>
+            <source media="(max-width: 768px)" srcset="./assets/img/hero-mobile.webp" type="image/webp">
+            <source media="(max-width: 768px)" srcset="./assets/img/hero-mobile.jpg" type="image/jpeg">
+            <source media="(prefers-reduced-motion: reduce)" srcset="./assets/img/hero-mobile.webp" type="image/webp">
+            <source media="(prefers-reduced-motion: reduce)" srcset="./assets/img/hero-mobile.jpg" type="image/jpeg">
+            <img src="./assets/img/hero-poster.jpg" alt="Chef in a hat cooking at an outdoor fire while guests look on" class="hero-poster">
+        </picture>
         <script>
             (function () {
                 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

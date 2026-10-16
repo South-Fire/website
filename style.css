@@ -180,6 +180,10 @@ h3 {
     filter: brightness(0.6);
 }
 
+.hero picture {
+    display: contents;
+}
+
 .hero img.hero-poster {
     display: none;
     position: absolute;
@@ -188,6 +192,8 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Bias upward so a short viewport still shows the chef's hat and the stove. */
+    object-position: center 30%;
     filter: brightness(0.6);
 }
 
