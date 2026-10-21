@@ -697,14 +697,6 @@ h3 {
     z-index: 1;
 }
 
-/* One upcoming event stays card-width instead of stretching across the section. */
-@media (min-width: 769px) {
-    .event-grid:has(> .event-card:only-child) {
-        grid-template-columns: minmax(0, 36rem);
-        justify-content: center;
-    }
-}
-
 .event-card {
     background: var(--bg-secondary-dark);
     border-radius: 15px;
