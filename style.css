@@ -718,8 +718,25 @@ h3 {
     transition: transform 0.4s ease;
 }
 
+.event-card-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    overflow: hidden;
+}
+
+.event-card-images .event-card-image {
+    display: block;
+    height: auto;
+    aspect-ratio: 3 / 2;
+}
+
 .event-card:hover .event-card-image {
     transform: scale(1.05);
+}
+
+.event-card:hover .event-card-images .event-card-image {
+    transform: none;
 }
 
 .event-card-content {
@@ -789,6 +806,10 @@ h3 {
 
     .event-card-image {
         height: 150px;
+    }
+
+    .event-card-images .event-card-image {
+        height: auto;
     }
 }
 
